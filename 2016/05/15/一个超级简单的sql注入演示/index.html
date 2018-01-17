@@ -10,14 +10,12 @@
 
     <!--Description-->
     
-        <meta name="description" content="（一）了解注入原理为什么会存在sql注入呢，只能说SQL出身不好。因为sql作为一种解释型语言，在运行时是由一个运行时组件解释语言代码并执行其中包含的指令的语言。基于这种执行方式，产生了一系列叫做代码注入（code injection）的漏洞 。它的数据其实是由程序员编写的代码和用户提交的数据共同组成的。程序员在web开发时，没有过滤敏感字符，绑定变量，导致攻击者可以通过sql灵活多变的语法，构造精心巧妙的语句，不择手段，达成目的，或者通过系统报错，返回对自己有用的信息。我们在学JDBC和SQL时，讲师跟我们说 Statement不能防止SQL注入, PreparedStatement能够防止SQL注入. 没错, 这句话是没有问题的, 但到底如何进行SQL注入?怎么直观的去了解SQL注入?这还是需要花一定的时间去实验的.预编译语句java.sql.PreparedStatement ,扩展自 Statement,不但具有 Statement 的所有能力而且具有更强大的功能。不同的是，PreparedStatement 是在创建语句对象的同时给出要执行的sql语句。这样，sql语句就会被系统进行预编译，执行的速度会有所增加，尤其是在执行大语句的时候，效果更加理想。而且PreparedStatement中绑定的sql语句是可以带参数的。
-（二）架设注入环境我们知道现在php作为一门网页编程语言真是风生水起，利用lamp(linux+apache+mysql+php)或者wamp(windows+apache+mysql+php)搭建网站环境，如腾讯的discuz、阿里的 phpwind 以及织梦的dedecms 等建站程序,占据了国内网站的半壁江山。那么我们今天即以这种架构为假象敌，首先是在本地架设wamp环境。需要用到的工具有：apache,mysql,php ，这几个组件可以单独下载安装，不过安装配置过程较为繁琐，还是建议新手直接从网上下载phpnow ，一个绿色程序，包含上述三个组件，傻瓜化操作就可以了。然后呢，我们要建立测试用的数据表，编写html,php,文件，通过实例具体来演示通过SQL注入，登入后台管理员界面。这里，我之前已经写好了，大家看下：
-1.创建一张试验用的数据表：1234567CREATE TABLE users (　　id int(11) NOT NULL AUTO_INCREMENT,　　username varchar(64) NOT NULL,　　password varchar(64) NOT NULL,　　PRIMARY KEY (id),　　UNIQUE KEY username (username)　　);">
+        <meta name="description" content="ShaunZheng">
     
 
     <!--Author-->
     
-        <meta name="author" content="ShaunZheng">
+        <meta name="author" content="郑爽">
     
 
     <!--Open Graph Title-->
@@ -26,6 +24,8 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="ShaunZheng" />
     
 
     <!--Open Graph Site Name-->
@@ -225,7 +225,7 @@
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>

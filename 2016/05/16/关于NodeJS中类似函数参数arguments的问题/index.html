@@ -10,12 +10,12 @@
 
     <!--Description-->
     
-        <meta name="description" content="关于NodeJS中类似函数参数arguments的问题小文件拷贝中：1234567891011var fs = require(&#39;fs&#39;);function copy(src,dst)&amp;#123;	fs.writeFileSync(dst, fs.readFileSync(src));&amp;#125;f">
+        <meta name="description" content="ShaunZheng">
     
 
     <!--Author-->
     
-        <meta name="author" content="ShaunZheng">
+        <meta name="author" content="郑爽">
     
 
     <!--Open Graph Title-->
@@ -24,6 +24,8 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="ShaunZheng" />
     
 
     <!--Open Graph Site Name-->
@@ -153,7 +155,7 @@
         
 
         <!-- Post Content -->
-        <h3 id="关于NodeJS中类似函数参数arguments的问题"><a href="#关于NodeJS中类似函数参数arguments的问题" class="headerlink" title="关于NodeJS中类似函数参数arguments的问题"></a>关于NodeJS中类似函数参数arguments的问题</h3><p><strong>小文件拷贝中：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">src,dst</span>)</span>&#123;</span><br><span class="line">	fs.writeFileSync(dst, fs.readFileSync(src));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">argv</span>)</span>&#123;</span><br><span class="line">	copy(argv[<span class="number">0</span>],argv[<span class="number">1</span>]);,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main(process.argv.slice(<span class="number">2</span>));</span><br></pre></td></tr></table></figure></p>
+        <p><strong>小文件拷贝中：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">src,dst</span>)</span>&#123;</span><br><span class="line">	fs.writeFileSync(dst, fs.readFileSync(src));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">argv</span>)</span>&#123;</span><br><span class="line">	copy(argv[<span class="number">0</span>],argv[<span class="number">1</span>]);,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main(process.argv.slice(<span class="number">2</span>));</span><br></pre></td></tr></table></figure></p>
 <p>困惑的是：main(argv)怎么就可以传入两个参数，并且调用的时候，可以使用==argv[0],argv[1]==？我们都知道：在js参数个数是可以传任意多个，不管命名的参数有多少个。但是在调用的时候必须使用==arguments[0],arguments[1]…==这种形式来调用参数。这里之所以可以直接使用argv，是因为使用==process.argv==获得命令行参数！</p>
 
     </div>
@@ -209,7 +211,7 @@
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>

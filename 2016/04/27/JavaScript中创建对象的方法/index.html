@@ -10,21 +10,12 @@
 
     <!--Description-->
     
-        <meta name="description" content="1.最简单的方法就是创建一个Object实例，然后为其添加属性和方法：（缺点：使用同一个接口创建很多对象，会产生大量的代码）1234567var person = new Object();person.name = &#34;cooling&#34;;person.age = 20;person.job = &#34;Web Engineer&#34;;person.sayName() = function()&amp;#123;	alert(this.name);&amp;#125;;//注意这里有分号
-2.对象字面量语法：（缺点：使用同一个接口创建很多对象，会产生大量的代码）
-
-注意和上面的区别：用“，”号分隔，用的是“:”号赋值。
-
-12345678var person = &amp;#123;	name : &#34;cooling&#34;,//注意这里是逗号	age : 20,	job : &#34;Web Engineer&#34;,	sayName : function()&amp;#123;		alert(this.name);	&amp;#125;&amp;#125;;
-3.工厂模式：123456789101112function createPerson(name,age,job)&amp;#123;	var o = new Object();	o.name = name;	o.age = age;	o.job = job;	o.sayName = function()&amp;#123;		alert(this.name);	&amp;#125;;	return o;&amp;#125;var person1 = createPerson(&#39;cooling1&#39;,20,&#39;Web Engineer&#39;);var person2 = createPerson(&#39;cooling2&#39;,23,&#39;Web Engineer&#39;);
-4.构造函数模式：
-
-注意：这里可是构造函数法的详细用法！像Object和Array这样的原生构造函数，在运行时，会自动出现在执行的环境中。此外也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。按照惯例，构造函数的首字母都应该大写，非构造函数用小写。">
+        <meta name="description" content="ShaunZheng">
     
 
     <!--Author-->
     
-        <meta name="author" content="ShaunZheng">
+        <meta name="author" content="郑爽">
     
 
     <!--Open Graph Title-->
@@ -33,6 +24,8 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="ShaunZheng" />
     
 
     <!--Open Graph Site Name-->
@@ -280,7 +273,7 @@
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>
