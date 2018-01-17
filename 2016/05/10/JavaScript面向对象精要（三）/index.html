@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="1.定义属性
+当一个属性第一次被添加给对象的时候，JavaScript在对象上调用了一个名为[[Put]]的内部方法。[[Put]]方法会在对象上创建一个新的节点来保存属性。此处创建的是自有属性，而不是原型属性。当一个已有属性，被赋予一个新的值的时候，调用[[Set]]方法。
+2.属性探测
+探测属性">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript精要之对象"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript精要之对象 - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    首页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    归档
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    关于
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/10/JavaScript面向对象精要（三）/">
+                JavaScript精要之对象
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><strong>1.定义属性</strong></p>
+<p>当一个属性第一次被添加给对象的时候，JavaScript在对象上调用了一个名为[[Put]]的内部方法。[[Put]]方法会在对象上创建一个新的节点来保存属性。此处创建的是自有属性，而不是原型属性。当一个已有属性，被赋予一个新的值的时候，调用[[Set]]方法。<br><img src="http://ww3.sinaimg.cn/mw690/005CMnY7jw1f3qd3jrwzij30ix06eaat.jpg"></p>
+<p><strong>2.属性探测</strong></p>
+<p>探测属性常见的错误：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(person1.age)&#123;</span><br><span class="line">	<span class="keyword">do</span>...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题是：JavaScript的类型强制会影响其输出的结果。如果if判断的值是：一个对象、非空字符串、非0数字或者true时，判断为真；如果if判断的值是null、undefined、0、false、NaN或者空字符串的时候判断为假。</p>
+<p>通过探测属性使用in和hasOwnProperty().<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"name"</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"toString"</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3.删除属性</strong></p>
+<p>注意：将一个属性值设置为null并不能从对象中彻底移除那个属性，只是调用了[[set]]这一内部方法，将属性值替换了而已。删除属性：delete。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> person1.name;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.属性枚举</strong></p>
+<p><em>两种方式：①for…in ②Object.keys()</em></p>
+<p>示例：</p>
+<p>for in 一般用于你不知道该数组或者JSON中包含哪些元素（还有就是对象中的哪些属性）,而进行遍历。(key的值就相当于下标)<br>例如有一个元素未知的JSON对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clnums = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,...&#125;;</span><br><span class="line"><span class="keyword">var</span> key;</span><br><span class="line"><span class="keyword">for</span>(key <span class="keyword">in</span> clnums)&#123;</span><br><span class="line">   <span class="built_in">document</span>.write(clnums[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果你只需获取一个对象的属性列表，以备程序将来使用。可以使用Object.keys()方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zs = <span class="built_in">Object</span>.keys(object);</span><br><span class="line"><span class="keyword">var</span> i;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;zs.length;i++)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"name:"</span>+zs[i]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"value:"</span>+object[zs]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Console显示如下：<br><img src="http://ww1.sinaimg.cn/mw690/005CMnY7gw1f3qfbwirf9j30b408cjrw.jpg"><br>*注意：并不是所有的属性都是可以枚举的。实际上，大部分的原生方法的[[Enumerable]]都被设置成了false。可以使用propertyIsEnumerable()方法来检测属性是否是可以枚举的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 =&#123;</span><br><span class="line">	name：“Cooling”</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person1.propertyIsEnumerable(<span class="string">"name"</span>));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> zs = <span class="built_in">Object</span>.keys(person1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"length"</span> <span class="keyword">in</span> zs);</span><br><span class="line"><span class="built_in">console</span>.log(zs.propertyIsEnumerable(<span class="string">"length"</span>);<span class="comment">//false内建属性不可枚举，因此zs是不存在的</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>5.属性类型</strong></p>
+<p>属性分为两种：++数据属性、访问器属性++。[[put]]方法默认创建的是数据属性，如前面的name、age属性等。</p>
+<p>访问器属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	_name: <span class="string">"Cooling"</span>，</span><br><span class="line">get name()&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Reading name"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._name;</span><br><span class="line">&#125;,</span><br><span class="line">set name(value)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Setting name to %s"</span>,value);</span><br><span class="line">    <span class="keyword">this</span>._name = value;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);</span><br><span class="line"></span><br><span class="line">person1.name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ww2.sinaimg.cn/mw690/005CMnY7jw1f3qiapct1dj30ku08cgmm.jpg" style="width:800px;"></p>
+<blockquote>
+<p>注释：本例定义了一个访问器属性name。一个数据属性_name保存了访问器属性的实际值。（下划线是一个约定俗成的规范，表示该属性是被私有的，实际上它还是公开的）。读取时调用的函数称为getter，写入时调用的函数称为setter。如果只定义其中一个函数，那么，其属性将会是只读或者是只写的。</p>
+</blockquote>
+<p><strong>6.属性特征</strong></p>
+<p><em>6.1通用特征：</em></p>
+<p>通用属性有两个：[[Enumerable]]（表示是否可以枚举，也就是是否可以遍历）、[[Configurable]]（表示是否可以配置）。你所声明的所有属性都是可以枚举、可以配置的。如果想对一个属性进行设置是否可以枚举和配置(方法:Object.defineProperty())，可以如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name:<span class="string">"Cooling"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">	Enumerable:<span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(person1.propertyIsEnumerable(<span class="string">"name"</span>);<span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> zs = <span class="built_in">Object</span>.keys(person1);</span><br><span class="line"><span class="built_in">console</span>.log(zs.length);<span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">	configurable:<span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">delete</span> person.name;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//Cooling</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">	confingurable:<span class="literal">true</span>;</span><br><span class="line">&#125;);										<span class="comment">//error!!!</span></span><br></pre></td></tr></table></figure></p>
+<p><em>6.2数据属性的特征</em></p>
+<p>数据属性具有两个访问器属性不具有的特征。即：[[Value]]、[[Writable]].<br>实例：（当Object.defineProperty()被调用时，会先检测属性是否存在，如果不存在，则根据所给定的特征创建。）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">	value:<span class="string">"cooling"</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    writable:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>当你使用Object.defineProperty()定义新的属性的时候，一定要注意为<strong>所有</strong>的特征指定一个值，否则布尔型的特征值会被默认设置为false。如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">	value:<span class="string">"cooling"</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.propertyIsEnumerable(<span class="string">"name"</span>)<span class="comment">//false</span></span><br><span class="line"><span class="keyword">delete</span> person1.name;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//cooling</span></span><br><span class="line">person1.name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//cooling</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>温馨提示：数据属性可以通过writable来设置属性是否可以被写。而在访问器属性中，可以通过setter和getter设置！</p>
+</blockquote>
+<p><em>6.3访问器属性的特征</em></p>
+<p>也具有两个额外的特征：[[Get]]、[[Set]]。仅仅需要定义其中一个特征就可以创建一个访问器属性。</p>
+<blockquote>
+<p>注意：不能同时创建一个具有数据属性特征和访问器属性特征的属性。</p>
+</blockquote>
+<p>可以将前面的改写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	_name: <span class="string">"Cooling"</span>，</span><br><span class="line">get name()&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Reading name"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._name;</span><br><span class="line">&#125;,</span><br><span class="line">set name(value)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Setting name to %s"</span>,value);</span><br><span class="line">    <span class="keyword">this</span>._name = value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>改写后：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	_name: <span class="string">"Cooling"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineproperty(person1,<span class="string">"name"</span>,&#123;</span><br><span class="line">    get <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//注意改变</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Reading name"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._name;</span><br><span class="line">    &#125;,</span><br><span class="line">    set <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;<span class="comment">//注意改变</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Setting name to %s"</span>,value);</span><br><span class="line">        <span class="keyword">this</span>._name = value;</span><br><span class="line">    &#125;,</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//注意：跟数据属性类似，如果这里的enumerable: true和configurable:true都不写的话，那么，就默认为false。这样就只能读取属性，不能改变属性。</span></span><br></pre></td></tr></table></figure></p>
+<p><em>6.4定义多重属性</em><br>使用方法：Object.defineProperties();<br>使用示例：(定义了_name数据属性和name访问器属性)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person1,&#123;</span><br><span class="line">	_name:&#123;</span><br><span class="line">        value:<span class="string">"cooling"</span>,</span><br><span class="line">        enumerable:<span class="literal">true</span>,</span><br><span class="line">        configurable:<span class="literal">true</span>,</span><br><span class="line">        writable:<span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    name:&#123;</span><br><span class="line">        get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Reading name"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;,</span><br><span class="line">        set:<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Setting name to %s"</span>,value);</span><br><span class="line">    &#125;,</span><br><span class="line">        enumerable:<span class="literal">true</span>,</span><br><span class="line">        configurable:<span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><em>6.5获取属性的特征</em><br>方法：Object.getOwnPropertyDescriptor();<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name: <span class="string">"cooling"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> descipt = <span class="built_in">Object</span>.getOwnPropertyDesciptor(person1,<span class="string">"name"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(descipt.enumerable);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(descipt.configurable);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>温馨提示：要特别注意使用Object.defineProperty()定义属性和直接var person1 = {name:”cooling”};这样定义的区别。他俩一个属性特征是完全不一样的！</p>
+</blockquote>
+<p><strong>7.禁止修改对象</strong></p>
+<p>对象和属性一样都具有指导其行为的内部特征。其中，[[Extensible]]就是一个，值为布尔类型的，表示是否可以扩展，也就是是否可以为对象添加属性。</p>
+<p>有三种方式禁止修改对象：</p>
+<p><em>①禁止扩展</em>（不可添加属性，可以对属性值进行修改，同时也可以删除属性值）</p>
+<p>【注：[[Extensible]]为false】</p>
+<p>方法：Object.preventExtensions();</p>
+<p>使用示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name:<span class="string">"cooling"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(person1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">person1.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"sayName"</span> <span class="keyword">in</span> person1);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><em>②对象封印</em>（不可添加属性、可以对属性值进行修改，但是不能删除属性值）</p>
+<p>【注：[[Extensible]]:flase [[Configurable]]:false】</p>
+<p>方法：Object.seal();</p>
+<p>使用示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name:<span class="string">"cooling"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isSealed(person1));<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.seal(person1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isSealed);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">person1.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"sayName"</span> <span class="keyword">in</span> person1);<span class="comment">//false</span></span><br><span class="line">person1.name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name)<span class="comment">//zs</span></span><br><span class="line"><span class="keyword">delete</span> person1.name;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.name)<span class="comment">//zs</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> de = <span class="built_in">Object</span>.getOwnPropertyDescriptor(person1,<span class="string">"name"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(de.configurable);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><em>③对象冻结</em>（不可添加属性，不可对属性进行修改，不能写入数据）</p>
+<p>【注：[[Configurable]]:false [[Writable]]:false [[Extensible]]:false】</p>
+<p>方法：Object.freeze();</p>
+<p>使用示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name:<span class="string">"cooling"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isSealed(person1));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isFrozen);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.freeze(person1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(person1));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isSealed(person1));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isFrozen);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">person1.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"sayName"</span> <span class="keyword">in</span> person1);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">person1.name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//cooling</span></span><br><span class="line"><span class="keyword">var</span> de = <span class="built_in">Object</span>.getOwnPropertyDescriptor(person1,<span class="string">"name"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(de.configurable);<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(de.writable);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript面向对象精要/">#JavaScript面向对象精要</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a>. 主要用于学习交流，若有帮助，不胜荣幸！
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/tags/">tags</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/一个超级简单的sql注入演示/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/关于NodeJS中类似函数参数arguments的问题/">Untitled</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="####深度理解函数：addLoadEvent(func)｛｝
+#####首先：
+注释如下，应该可以理解。
+123456789101112131415161718192021222324      function addLoadEvent(func)&amp;#123;	var oldonload = w">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ShaunZheng"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    首页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    归档
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    关于
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/01/17/addLoadEvent/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>####深度理解函数：addLoadEvent(func)｛｝</p>
+<p>#####首先：</p>
+<p>注释如下，应该可以理解。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">'function'</span>) &#123;<span class="comment">//判断当前如果没有函数加载</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = func;<span class="comment">//那么直接加载传入的函数</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//如果在调用addLoadEvent前，有window.onload加载的函数，那么加上该函数</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">			oldonload();</span><br><span class="line"></span><br><span class="line">			func();</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#####测试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cooling1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	alert(<span class="string">"hello"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cooling2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	alert(<span class="string">"world"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">cooling3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	alert(<span class="string">"六哥"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">'function'</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = func;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// oldonload();</span></span><br><span class="line"></span><br><span class="line">			func();</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload = cooling1;</span><br><span class="line"></span><br><span class="line">addLoadEvent(cooling2);</span><br><span class="line"></span><br><span class="line">addLoadEvent(cooling3);</span><br></pre></td></tr></table></figure>
+<p>######结果：</p>
+<p>注释了oldonload()，那么导致之前已经加载的函数都不可以，因此结果是：六哥。（懂我的以后不要叫爽哥，记得叫六哥！）同时，如果注释了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#####如果这样：</span><br><span class="line"></span><br><span class="line">```javascript</span><br><span class="line"></span><br><span class="line">		function addLoadEvent(func)&#123;</span><br><span class="line"></span><br><span class="line">			var oldonload = window.onload;</span><br><span class="line"></span><br><span class="line">			if (typeof window.onload != &apos;function&apos;) &#123;</span><br><span class="line"></span><br><span class="line">				window.onload = func;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			else&#123;</span><br><span class="line"></span><br><span class="line">				window.onload = function()&#123;</span><br><span class="line"></span><br><span class="line">					oldonload();//此处不再注释</span><br><span class="line"></span><br><span class="line">					func();</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		addLoadEvent(cooling3);</span><br><span class="line"></span><br><span class="line">		window.onload = cooling1;</span><br><span class="line"></span><br><span class="line">		addLoadEvent(cooling2);//注意顺序</span><br></pre></td></tr></table></figure></p>
+<p>######结果：</p>
+<p>addLoadEvent(cooling3)将起不到作用，结果为hello ，world。</p>
+<p>#####同理，如果这样:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">addLoadEvent(cooling2);<span class="comment">//注意顺序</span></span><br><span class="line"></span><br><span class="line">addLoadEvent(cooling3);</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload = cooling1;</span><br></pre></td></tr></table></figure>
+<p>######结果：</p>
+<p>将所有的addLoadEvent都不起作用。</p>
+<p>#####总结：</p>
+<blockquote>
+<p>在使用JavaScript写相关程序的过程中，addLoadEvent这样的函数几乎每次都能用到。执行时，是按照函数调用的顺序，顺序向下执行（我这里的依次弹窗就体现了这点）。但是要注意，如果同时使用window.onload加载函数，那么window.onload必须放在所有的addLoadEvent函数前。只有这样才能起到作用。</p>
+</blockquote>
+<p>####类似的常用函数还有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">insertAfter</span>(<span class="params">newElement,targetElement</span>) </span>&#123;</span><br><span class="line">	    <span class="keyword">var</span> parent = targetElement.parentNode;</span><br><span class="line">	    <span class="keyword">if</span> (parent.lastChild == targetElement) &#123;</span><br><span class="line">			parent.appendChild(newElement);</span><br><span class="line">	    &#125; </span><br><span class="line">	    <span class="keyword">else</span> &#123;</span><br><span class="line">	        parent.insertBefore(newElement,targetElement.nextSibling);</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">       </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">element,value</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!element.className) &#123;</span><br><span class="line">           element.className = value;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">           newClassName = element.className;</span><br><span class="line">           newClassName += <span class="string">" "</span>;</span><br><span class="line">           newClassName += value;</span><br><span class="line">           element.className = newClassName;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>由于JavaScript中不存在insertAfter()、addClass()这样的方法，所以需要手动建立一个这样的函数，方便复用！对于addClass()这个函数，要注意字符串拼接的部分，i+=j 等价与i=i+j,而不等价于i=j+i；虽然它们在数值运算上，是相等的，但是在字符串拼接上，却值得注意！</p>
+</blockquote>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a>. 主要用于学习交流，若有帮助，不胜荣幸！
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/tags/">tags</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/一个超级简单的sql注入演示/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/关于NodeJS中类似函数参数arguments的问题/">Untitled</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

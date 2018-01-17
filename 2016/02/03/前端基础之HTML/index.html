@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="HTML XHTML XML 的区别？发展趋势：
+html(超文本标记语言)——xhtml(可扩展性超文本标记语言)——xml（可扩展性标记语言）; 
+
+html：1.对大小写不敏感2.标签不必成对出现 如：&amp;lt;br&amp;gt;
+xhtml：1.对大小写敏感，必须是小写的；2.标签必须成对出现，有开始标签就必须有结束标签；3.属性值必须在引号之内； s4.不支持属性最小化：eg：正确：&amp;lt;input checked=&amp;#39;checked&amp;#39;&amp;gt;错误：&amp;lt;input checked&amp;gt;5.name属性不赞成使用，以后会被淘汰；6.空元素也要结束标签：如：&amp;lt;br/&amp;gt;,&amp;lt;hr/&amp;gt;(水平分割线) 
+xml：html最终会发展到xml，xhtml是html想xml发展的一个过渡，xhtml的特性也适合xml；
+常用的 DOCTYPE 声明
+在 HTML 4.01 中，&amp;lt;!DOCTYPE&amp;gt; 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。HTML5 不基于 SGML，所以不需要引用 DTD。
+
+HTML 5&amp;lt;!DOCTYPE html&amp;gt;
+HTML 4.01 Strict该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.01//EN&amp;quot; &amp;quot;http://www.w3.org/TR/html4/strict.dtd&amp;quot;&amp;gt;
+HTML 4.01 Transitional该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.01 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/html4/loose.dtd&amp;quot;&amp;gt;">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="前端基础之HTML"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>前端基础之HTML - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/02/03/前端基础之HTML/">
+                前端基础之HTML
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-03</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="HTML-XHTML-XML-的区别？"><a href="#HTML-XHTML-XML-的区别？" class="headerlink" title="HTML XHTML XML 的区别？"></a>HTML XHTML XML 的区别？</h2><h3 id="发展趋势："><a href="#发展趋势：" class="headerlink" title="发展趋势："></a>发展趋势：</h3><blockquote>
+<p>html(超文本标记语言)——xhtml(可扩展性超文本标记语言)——xml（可扩展性标记语言）; </p>
+</blockquote>
+<h3 id="html："><a href="#html：" class="headerlink" title="html："></a>html：</h3><p>1.对大小写不敏感<br>2.标签不必成对出现 如：<code>&lt;br&gt;</code></p>
+<h3 id="xhtml："><a href="#xhtml：" class="headerlink" title="xhtml："></a>xhtml：</h3><p>1.对大小写敏感，必须是小写的；<br>2.标签必须成对出现，有开始标签就必须有结束标签；<br>3.属性值必须在引号之内； s<br>4.不支持属性最小化：<br>eg：<br>正确：<code>&lt;input checked=&#39;checked&#39;&gt;</code><br>错误：<code>&lt;input checked&gt;</code><br>5.name属性不赞成使用，以后会被淘汰；<br>6.空元素也要结束标签：如：<code>&lt;br/&gt;,&lt;hr/&gt;</code>(水平分割线) </p>
+<h3 id="xml："><a href="#xml：" class="headerlink" title="xml："></a>xml：</h3><p>html最终会发展到xml，xhtml是html想xml发展的一个过渡，xhtml的特性也适合xml；</p>
+<h2 id="常用的-DOCTYPE-声明"><a href="#常用的-DOCTYPE-声明" class="headerlink" title="常用的 DOCTYPE 声明"></a>常用的 DOCTYPE 声明</h2><blockquote>
+<p>在 HTML 4.01 中，&lt;!DOCTYPE&gt; 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。<br>HTML5 不基于 SGML，所以不需要引用 DTD。</p>
+</blockquote>
+<h3 id="HTML-5"><a href="#HTML-5" class="headerlink" title="HTML 5"></a>HTML 5</h3><p><code>&lt;!DOCTYPE html&gt;</code></p>
+<h3 id="HTML-4-01-Strict"><a href="#HTML-4-01-Strict" class="headerlink" title="HTML 4.01 Strict"></a>HTML 4.01 Strict</h3><p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。<br><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code></p>
+<h3 id="HTML-4-01-Transitional"><a href="#HTML-4-01-Transitional" class="headerlink" title="HTML 4.01 Transitional"></a>HTML 4.01 Transitional</h3><p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。<br><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</code><br><a id="more"></a></p>
+<h3 id="HTML-4-01-Frameset"><a href="#HTML-4-01-Frameset" class="headerlink" title="HTML 4.01 Frameset"></a>HTML 4.01 Frameset</h3><p>该 DTD 等同于 HTML 4.01 Transitional，但允许框架集内容。<br><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; &quot;http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</code></p>
+<h3 id="XHTML-1-0-Strict"><a href="#XHTML-1-0-Strict" class="headerlink" title="XHTML 1.0 Strict"></a>XHTML 1.0 Strict</h3><p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。<br><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</code></p>
+<h3 id="XHTML-1-0-Transitional"><a href="#XHTML-1-0-Transitional" class="headerlink" title="XHTML 1.0 Transitional"></a>XHTML 1.0 Transitional</h3><p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。必须以格式正确的 XML 来编写标记。<br><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></p>
+<h3 id="XHTML-1-0-Frameset"><a href="#XHTML-1-0-Frameset" class="headerlink" title="XHTML 1.0 Frameset"></a>XHTML 1.0 Frameset</h3><p>该 DTD 等同于 XHTML 1.0 Transitional，但允许框架集内容。<br><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Frameset//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;</code></p>
+<h3 id="XHTML-1-1"><a href="#XHTML-1-1" class="headerlink" title="XHTML 1.1"></a>XHTML 1.1</h3><p>该 DTD 等同于 XHTML 1.0 Strict，但允许添加模型（例如提供对东亚语系的 ruby 支持）。<br><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;</code></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/HTML/">#HTML</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="（一）了解注入原理为什么会存在sql注入呢，只能说SQL出身不好。因为sql作为一种解释型语言，在运行时是由一个运行时组件解释语言代码并执行其中包含的指令的语言。基于这种执行方式，产生了一系列叫做代码注入（code injection）的漏洞 。它的数据其实是由程序员编写的代码和用户提交的数据共同组成的。程序员在web开发时，没有过滤敏感字符，绑定变量，导致攻击者可以通过sql灵活多变的语法，构造精心巧妙的语句，不择手段，达成目的，或者通过系统报错，返回对自己有用的信息。我们在学JDBC和SQL时，讲师跟我们说 Statement不能防止SQL注入, PreparedStatement能够防止SQL注入. 没错, 这句话是没有问题的, 但到底如何进行SQL注入?怎么直观的去了解SQL注入?这还是需要花一定的时间去实验的.预编译语句java.sql.PreparedStatement ,扩展自 Statement,不但具有 Statement 的所有能力而且具有更强大的功能。不同的是，PreparedStatement 是在创建语句对象的同时给出要执行的sql语句。这样，sql语句就会被系统进行预编译，执行的速度会有所增加，尤其是在执行大语句的时候，效果更加理想。而且PreparedStatement中绑定的sql语句是可以带参数的。
+（二）架设注入环境我们知道现在php作为一门网页编程语言真是风生水起，利用lamp(linux+apache+mysql+php)或者wamp(windows+apache+mysql+php)搭建网站环境，如腾讯的discuz、阿里的 phpwind 以及织梦的dedecms 等建站程序,占据了国内网站的半壁江山。那么我们今天即以这种架构为假象敌，首先是在本地架设wamp环境。需要用到的工具有：apache,mysql,php ，这几个组件可以单独下载安装，不过安装配置过程较为繁琐，还是建议新手直接从网上下载phpnow ，一个绿色程序，包含上述三个组件，傻瓜化操作就可以了。然后呢，我们要建立测试用的数据表，编写html,php,文件，通过实例具体来演示通过SQL注入，登入后台管理员界面。这里，我之前已经写好了，大家看下：
+1.创建一张试验用的数据表：1234567CREATE TABLE users (　　id int(11) NOT NULL AUTO_INCREMENT,　　username varchar(64) NOT NULL,　　password varchar(64) NOT NULL,　　PRIMARY KEY (id),　　UNIQUE KEY username (username)　　);">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="一个超级简单的sql注入演示"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>一个超级简单的sql注入演示 - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/15/一个超级简单的sql注入演示/">
+                一个超级简单的sql注入演示
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-15</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h5 id="（一）了解注入原理"><a href="#（一）了解注入原理" class="headerlink" title="（一）了解注入原理"></a>（一）了解注入原理</h5><p>为什么会存在sql注入呢，只能说SQL出身不好。因为sql作为一种解释型语言，在运行时是由一个运行时组件解释语言代码并执行其中包含的指令的语言。基于这种执行方式，产生了一系列叫做代码注入（code injection）的漏洞 。它的数据其实是由程序员编写的代码和用户提交的数据共同组成的。程序员在web开发时，没有过滤敏感字符，绑定变量，导致攻击者可以通过sql灵活多变的语法，构造精心巧妙的语句，不择手段，达成目的，或者通过系统报错，返回对自己有用的信息。<br>我们在学JDBC和SQL时，讲师跟我们说 Statement不能防止SQL注入, PreparedStatement能够防止SQL注入. 没错, 这句话是没有问题的, 但到底如何进行SQL注入?怎么直观的去了解SQL注入?这还是需要花一定的时间去实验的.预编译语句java.sql.PreparedStatement ,扩展自 Statement,不但具有 Statement 的所有能力而且具有更强大的功能。不同的是，PreparedStatement 是在创建语句对象的同时给出要执行的sql语句。这样，sql语句就会被系统进行预编译，执行的速度会有所增加，尤其是在执行大语句的时候，效果更加理想。而且PreparedStatement中绑定的sql语句是可以带参数的。</p>
+<h5 id="（二）架设注入环境"><a href="#（二）架设注入环境" class="headerlink" title="（二）架设注入环境"></a>（二）架设注入环境</h5><p>我们知道现在php作为一门网页编程语言真是风生水起，利用lamp(linux+apache+mysql+php)或者wamp(windows+apache+mysql+php)搭建网站环境，如腾讯的discuz、阿里的 phpwind 以及织梦的dedecms 等建站程序,占据了国内网站的半壁江山。那么我们今天即以这种架构为假象敌，首先是在本地架设wamp环境。需要用到的工具有：apache,mysql,php ，这几个组件可以单独下载安装，不过安装配置过程较为繁琐，还是建议新手直接从网上下载phpnow ，一个绿色程序，包含上述三个组件，傻瓜化操作就可以了。<br>然后呢，我们要建立测试用的数据表，编写html,php,文件，通过实例具体来演示通过SQL注入，登入后台管理员界面。这里，我之前已经写好了，大家看下：</p>
+<p>1.创建一张试验用的数据表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">users</span> (</span><br><span class="line">　　<span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">　　username <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">　　<span class="keyword">password</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">　　PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">　　<span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> username (username)</span><br><span class="line">　　);</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>添加一条记录用于测试：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">users</span> (username,<span class="keyword">password</span>)</span><br><span class="line">　　<span class="keyword">VALUES</span>(<span class="string">'cooling'</span>,<span class="keyword">md5</span>(<span class="string">'admin'</span>));</span><br></pre></td></tr></table></figure></p>
+<p>2.接下来，贴上登录界面的源代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Sql注入演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset=utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"validate.php"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>Sql注入演示<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>密&amp;nbsp;&amp;nbsp;码：<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当用户点击提交按钮的时候，将会把表单数据提交给validate.php页面，validate.php页面用来判断用户输入的用户名和密码有没有都符合要求(这一步至关重要，也往往是SQL漏洞所在)。<br>3.验证模块代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;登录验证&lt;/title&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html;charset=utf-8"</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">       $conn=@mysql_connect(<span class="string">"localhost"</span>,<span class="string">'root'</span>,<span class="string">''</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"数据库连接失败！"</span>);;</span><br><span class="line">       mysql_select_db(<span class="string">"injection"</span>,$conn) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"您要选择的数据库不存在"</span>);</span><br><span class="line">       $name=$_POST[<span class="string">'username'</span>];</span><br><span class="line">       $pwd=$_POST[<span class="string">'password'</span>];</span><br><span class="line">       $sql=<span class="string">"select * from users where username='$name' and password='$pwd'"</span>;</span><br><span class="line">       $query=mysql_query($sql);</span><br><span class="line">       $arr=mysql_fetch_array($query);</span><br><span class="line">       <span class="keyword">if</span>(is_array($arr))&#123;</span><br><span class="line">              header(<span class="string">"Location:manager.php"</span>);</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              <span class="keyword">echo</span> <span class="string">"您的用户名或密码输入有误，&lt;a href=\"Login.php\"&gt;请重新登录！&lt;/a&gt;"</span>;</span><br><span class="line">       &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注意到了没有，我们直接将用户提交过来的数据(用户名和密码)直接拿去执行，并没有实现进行特殊字符过滤，待会你们将明白，这是致命的。<br>　　代码分析：如果，用户名和密码都匹配成功的话，将跳转到管理员操作界面(manager.php)，不成功，则给出友好提示信息。</p>
+<h5 id="（三）演示注入手法"><a href="#（三）演示注入手法" class="headerlink" title="（三）演示注入手法　　"></a>（三）演示注入手法　　</h5><p>到这里，前期工作已经做好了，我们看这个登录界面，虽说是简陋了点。但具有一般登录认证的功能。普通人看这个不过是一个登录界面，但从攻击者角度来说，透过现象看本质，我们应当意识到隐藏在这个登录页面背后的是一条select 语句—</p>
+<p>OK！ 接下来将展开我们的重头戏：SQL注入<br>填好正确的用户名(tarena)和密码(admin)后，点击提交，将会返回给我们“欢迎管理员”的界面。<br>因为根据我们提交的用户名和密码被合成到SQL查询语句当中之后是这样的：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　    <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">'cooling'</span> <span class="keyword">and</span> <span class="keyword">password</span>=<span class="keyword">md5</span>(<span class="string">'admin'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>很明显，用户名和密码都和我们之前给出的一样，肯定能够成功登陆。但是，如果我们输入一个错误的用户名或密码呢?很明显，肯定登入不了吧。恩，正常情况下是如此，但是对于有SQL注入漏洞的网站来说，只要构造个特殊的“字符串”，照样能够成功登录。</p>
+<p>比如：在用户名输入框中输入:’or 1=1#,密码随便输入，这时候的合成后的SQL查询语句为：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　    <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">''</span> <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span>#<span class="string">' and password=md5('')</span></span><br></pre></td></tr></table></figure></p>
+<p>　　语义分析：“#”在mysql中是注释符，这样井号后面的内容将被mysql视为注释内容，这样就不会去执行了，换句话说，以下的两句sql语句等价：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　    <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">''</span> <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span>#<span class="string">' and password=md5('')</span></span><br></pre></td></tr></table></figure></p>
+<p>　　等价于<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　    <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">''</span> <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>　　因为1=1永远都是成立的，即where子句总是为真，将该sql进一步简化之后，等价如下select语句：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　    <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure></p>
+<p>没错，该sql语句的作用是检索users表中的所有字段<br>果不其然，我们利用万能语句(’or 1=1#)能够登录！看到了吧，一个经构造后的sql语句竟有如此可怕的破坏力，相信你看到这后，开始对sql注入有了一个理性的认识了吧~</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/数据库/">#数据库</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

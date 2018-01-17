@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="概念理解：原始值：原始类型变量中的值引用值：就是对象，或者交做实例。
+
+原始值被直接保存在变量的对象内，引用值则作为一个指针保存在变量对象内，该指针指向实际对象在内存中的存储位置。
+
+创建对象：1var object = new Object();
+注意：因为引用类型不在变量中直接保存对象，所以，这里的object变量实际上并不包含对象的实例。这里的object是一个指向内存中实际对象所在位置的指针。这里的object的正确名称，应该叫被创建对象的引用！！！！
+原始类型具有的原始方法（总结）：1234567891011var name = &#34;Cooling&#34;;var lowercasename = name.toLowerCase();//转化为小写var firstLetter = name.charAt(0);//得到Cvar middleOfName = name.substring(2,5);//得到2-4的字符var count = 10;var fixedCount = count.toFixed(2);//10.00var hexCount = count.toString(16);//转化为16进制avar flag = true;var stringFlag = flag.toString;//转换为字符串&#34;true&#34;">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript精要之原始类型和引用类型"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript精要之原始类型和引用类型 - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/04/28/JavaScript面向对象精要（一）/">
+                JavaScript精要之原始类型和引用类型
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-28</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><strong>概念理解：</strong><br>原始值：原始类型变量中的值<br>引用值：就是对象，或者交做实例。</p>
+<blockquote>
+<p>原始值被直接保存在变量的对象内，引用值则作为一个指针保存在变量对象内，该指针指向实际对象在内存中的存储位置。</p>
+</blockquote>
+<p>创建对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure></p>
+<p>注意：因为引用类型不在变量中直接保存对象，所以，这里的object变量实际上并不包含对象的实例。这里的object是一个指向内存中实际对象所在位置的指针。这里的object的正确名称，应该叫被创建对象的引用！！！！</p>
+<p><strong>原始类型具有的原始方法（总结）：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"Cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> lowercasename = name.toLowerCase();<span class="comment">//转化为小写</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//得到C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//得到2-4的字符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//转化为16进制a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString;<span class="comment">//转换为字符串"true"</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>字面量形式：</strong></p>
+<blockquote>
+<p>字面量形式允许你在不需要使用new操作符和构造函数显式创建对象的情况下，生成引用值。</p>
+</blockquote>
+<p>①在原始类型中：<br>字量面就是变量的字符串表现形式。它不是一种值，而是一种记法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;<span class="comment">//这里的cooling就是字面量</span></span><br></pre></td></tr></table></figure></p>
+<p>②在引用类型中，存在对象字面量、数组字面量、函数字面量、正则表达式字面量：</p>
+<p>a.对象字面量（两种）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name : <span class="string">"cooling"</span>,</span><br><span class="line">	age : <span class="number">20</span>,</span><br><span class="line">	job : <span class="string">"Web Engineer"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	<span class="string">"name"</span> : <span class="string">"cooling"</span>,</span><br><span class="line">	<span class="string">"age"</span> : <span class="number">20</span>,</span><br><span class="line">	<span class="string">"job"</span> : <span class="string">"Web Engineer"</span></span><br><span class="line">&#125;;<span class="comment">//这种形式可以方便在属性名字里加空格</span></span><br></pre></td></tr></table></figure></p>
+<p>b.数组字面量（两种方式）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>,<span class="string">'green'</span>,<span class="string">'blue'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>]);<span class="comment">//red</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colors  = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'red'</span>,<span class="string">'green'</span>,<span class="string">'blue'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>]);<span class="comment">//red</span></span><br></pre></td></tr></table></figure></p>
+<p>c.函数字面量：</p>
+<blockquote>
+<p>注意这里和构造函数的区别，构造函数是对新构造的函数设置属性，这里是new一个新的函数，然后往函数里面传值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reflect</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> reflect = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"value"</span>,<span class="string">"return value;"</span>);</span><br></pre></td></tr></table></figure>
+<p>d.正则表达式字面量（关于正则表达式，会另外起一篇博客详细讲解）<br>略</p>
+<p><strong>访问属性：</strong></p>
+<p>存在两种方式访问属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [];</span><br><span class="line">array.push(<span class="number">12345</span>);</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">var</span> array = [];</span><br><span class="line">array[<span class="string">"push"</span>](<span class="number">12345</span>);<span class="comment">//注意这里需要加双引号</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以这么写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [];</span><br><span class="line"><span class="keyword">var</span> method = <span class="string">"push"</span>;</span><br><span class="line">array[method](<span class="number">12345</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>鉴别引用类型：</strong></p>
+<p>①typeof：(只能鉴别是否是函数，对于非函数，返回object)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cooling</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> cooling);<span class="comment">//function</span></span><br></pre></td></tr></table></figure></p>
+<p>PS:(其对于原始类型，还是可以做出判断的！)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">// "object" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>; </span><br><span class="line">&#125;); <span class="comment">// "function" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> <span class="string">'梦龙小站'</span>); <span class="comment">// "string" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> <span class="number">1</span>); <span class="comment">// "number" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> a); <span class="comment">// "undefined" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> <span class="literal">undefined</span>); <span class="comment">// "undefined" </span></span><br><span class="line">alert(<span class="keyword">typeof</span> []); <span class="comment">// "object"</span></span><br></pre></td></tr></table></figure></p>
+<p>②instanceof(可以鉴别其具体是不是某个类型)：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = [];</span><br><span class="line"><span class="keyword">var</span> object = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cooling</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(items <span class="keyword">instanceof</span> <span class="built_in">Array</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(object <span class="keyword">instanceof</span> <span class="built_in">Object</span>);<span class="comment">//true</span></span><br><span class="line">cobsole.log(cooling instansof <span class="built_in">Function</span>);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>鉴别数组：</strong></p>
+<p>我们都已经知道，instanceof可以用来鉴别其是否是数组。但是在同一个页面中可能存在不同的框架，当你把一个数组，从一个框架传到另一个框架时，instanceof就无法识别它，因为那个数组是来自不同框架的Array实例。我们可以使用Array.isArray()方法来检测，这也是鉴别数组的最佳方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = [];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(items));<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>基本包装类型（或者叫原始封装类型）-属于引用类型：</strong></p>
+<blockquote>
+<p>String、Number、Boolean：注意这些都属于引用类型，不过是比较特殊的引用类型。它们三的存在，使得原始类型用起来跟对象一样方便。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> firstChar = name.charAt(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(firstChar);<span class="comment">//c</span></span><br></pre></td></tr></table></figure>
+<p>这是在背后，实际发生的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> tem = <span class="keyword">new</span> <span class="built_in">String</span>(name);</span><br><span class="line"><span class="keyword">var</span> firstChar = tem.charAt(<span class="number">0</span>);</span><br><span class="line">tem = <span class="literal">null</span>;<span class="comment">//注意这里的自动销毁</span></span><br><span class="line"><span class="built_in">console</span>.log(firstChar);</span><br></pre></td></tr></table></figure></p>
+<p>测试上面的自动销毁部分：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line">name.zs = <span class="string">"zs"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name.zs);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>这是实际发生的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> tem = <span class="keyword">new</span> <span class="built_in">String</span>(name);</span><br><span class="line">tem.zs = <span class="string">"zs"</span>;</span><br><span class="line">tem = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tem = <span class="keyword">new</span> <span class="built_in">String</span>(name);</span><br><span class="line"><span class="built_in">console</span>.log(tem.last);</span><br><span class="line">tem = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p> 提醒：instanceof是用来检测引用类型的。由于这里的name对象创建后立即被销毁，因此使用instanceof来检测这里的name的时候，会显示false，而不会显示它的对象类型。代码如下：</p>
+<blockquote>
+<p>值得注意的是，如果这里使用typeof判断的话，是可行的，因为这里会直接把name看成原始类型，然后用typeof判断。注意typeof是既可以判断原始类型，也可以检测引用类型的！</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> found = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name <span class="keyword">instanceof</span> <span class="built_in">String</span>);<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(count <span class="keyword">instanceof</span> <span class="built_in">Number</span>);<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(found <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>如果手动创建的话，那么会有些副作用(不能够鉴别出它的数据类型)：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"cooling"</span>);</span><br><span class="line"><span class="keyword">var</span> count = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">var</span> found = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> name);<span class="comment">//object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> count);<span class="comment">//object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> found);<span class="comment">//object</span></span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript面向对象精要/">#JavaScript面向对象精要</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

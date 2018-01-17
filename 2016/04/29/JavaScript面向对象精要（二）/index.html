@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="1.函数的本质JavaScript中，函数其实就是对象，使函数不同于其他对象的决定性特点就是函数存在一个[[call]]的内部属性。内部属性无法通过代码访问，而是定义了代码执行时的行为。（JavaScript的对象定义了多种内部属性，这种属性都用双重中括号括起来，比如[[Prototype]]）。正是有了这样的一个[[call]]属性，所以typeof在解读时，把函数解读为function。
+2.函数的提升我们都知道，定义一个函数，既可以使用函数声明，也可以使用函数表达式，或者是使用构造函数方式。值得注意的是，函数声明会被提升至上下文！1234var result = add(5,5);//10function add(num1,num2)&amp;#123;	return num1 + num2;&amp;#125;
+JavaScript会将函数声明提升至顶部来执行，使得它就如同下面这代码一样：1234function add(num1,num2)&amp;#123;	return num1 + num2;&amp;#125;var result = add(5,5);
+但是，值得注意的是，函数表达式，或者构造函数必须得在函数定义后调用函数，下面这就是错的：1234var result = add(5,5);var add = function(num1,num2)&amp;#123;	return num1 + num2;&amp;#125;;
+3.函数就是值！eg1.函数可以将他们赋给变量：">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript精要之函数"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript精要之函数 - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/04/29/JavaScript面向对象精要（二）/">
+                JavaScript精要之函数
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><strong>1.函数的本质</strong><br>JavaScript中，函数其实就是对象，使函数不同于其他对象的决定性特点就是函数存在一个[[call]]的内部属性。内部属性无法通过代码访问，而是定义了代码执行时的行为。（JavaScript的对象定义了多种内部属性，这种属性都用双重中括号括起来，比如[[Prototype]]）。正是有了这样的一个[[call]]属性，所以typeof在解读时，把函数解读为function。</p>
+<p><strong>2.函数的提升</strong><br>我们都知道，定义一个函数，既可以使用函数声明，也可以使用函数表达式，或者是使用构造函数方式。值得注意的是，函数声明会被提升至上下文！<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);<span class="comment">//10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>JavaScript会将函数声明提升至顶部来执行，使得它就如同下面这代码一样：</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure></p>
+<p>但是，值得注意的是，函数表达式，或者构造函数必须得在函数定义后调用函数，下面这就是错的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.函数就是值！</strong><br>eg1.函数可以将他们赋给变量：<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"hi"</span>);</span><br><span class="line">&#125;</span><br><span class="line">sayHi();<span class="comment">//hi</span></span><br><span class="line"><span class="keyword">var</span> sayHi1 = sayHi;</span><br><span class="line">sayHi1();</span><br></pre></td></tr></table></figure></p>
+<p>eg2.可以将函数当成参数传递给别的函数，或者从别的函数中返回<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">6</span>];</span><br><span class="line">numbers.sort(<span class="function"><span class="keyword">function</span>(<span class="params">first,second</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> first - second;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(numbers);<span class="comment">//[1,3,6,8,10]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">numbers.sort();</span><br><span class="line"><span class="built_in">console</span>.log(numbers);<span class="comment">//[1,10,3,6,8]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>4.函数的参数</strong><br>JavaScript函数的一个独特之处，在于你可以给函数传递任意数量的参数，却不会造成错误。原因是，有一个arguments对象，自动存在于函数中。这个arguments对象，类似于数组，用来存放函数的参数。arguments的length值会告诉你到底有多少个参数的。注意，arguments对象只是类似于数组，但是并不是数组，因此console.log(Array.isArray(arguments));始终返回false。<br>eg1.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reflect</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(reflect(<span class="string">"hi"</span>));<span class="comment">//hi</span></span><br><span class="line"><span class="built_in">console</span>.log(reflect(<span class="string">"hi"</span>,<span class="number">20</span>));<span class="comment">//hi</span></span><br><span class="line"><span class="built_in">console</span>.log(reflect.length);<span class="comment">//1</span></span><br><span class="line"></span><br><span class="line">reflect = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(reflect(<span class="string">"hi"</span>);<span class="comment">//hi</span></span><br><span class="line"><span class="built_in">console</span>.log(reflect(<span class="string">"hi"</span>,<span class="number">20</span>));<span class="comment">//hi</span></span><br><span class="line"><span class="built_in">console</span>.log(reflect.length);<span class="comment">//0</span></span><br></pre></td></tr></table></figure></p>
+<p>eg2.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> result = <span class="number">0</span>,i = <span class="number">0</span>,len = <span class="built_in">arguments</span>.length;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">    result += <span class="built_in">arguments</span>[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>,<span class="number">2</span>));<span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>));<span class="comment">//18</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">50</span>));<span class="comment">//50</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">0</span>));<span class="comment">//0</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>5.函数的重载</strong><br>JavaScript不存在函数的重载。比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayMessage</span>(<span class="params">message</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayMessage</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Default message"</span>);</span><br><span class="line">&#125;</span><br><span class="line">sayMessage(<span class="string">"hello"</span>);<span class="comment">//Default message</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，只有最近定义的那个函数起作用，重复的那个会被最近的那个覆盖。本质如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sayMessage = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"message"</span>,<span class="string">"console.log(message)"</span>);</span><br><span class="line">sayMessage = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"console.log(\"Default message"</span>\)<span class="string">");//</span></span><br><span class="line"><span class="string">后一个覆盖了上一个了</span></span><br><span class="line"><span class="string">sayMessage("</span>hello<span class="string">");//Default message</span></span><br></pre></td></tr></table></figure>
+<p>模仿重载：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayMessage</span>(<span class="params">message</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">arguments</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">//这里还可以使用typeof、instanceof来检测判断</span></span><br><span class="line">    message = <span class="string">"Default message"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br><span class="line">sayMessage(<span class="string">"hello"</span>);<span class="comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>6.This</strong><br>首先，看一下不使用this的时候，会出现的情况：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person()&#123;</span><br><span class="line">	name : <span class="string">"cooling"</span>,</span><br><span class="line">    sayName() : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(person.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.sayName();</span><br></pre></td></tr></table></figure></p>
+<p><em>问题：方法和对象上存在紧密耦合。①你改变了对象，也就是改变了person变量，那么你将不得不改变方法中的引用的名字②同一个方法，无法做到被不同的对象来使用</em></p>
+<p>改进：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person()&#123;</span><br><span class="line">	name : <span class="string">"cooling"</span>,</span><br><span class="line">    sayName() : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.sayName();</span><br></pre></td></tr></table></figure></p>
+<p>整合，体现this用法的代码;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayNameforall</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name : <span class="string">"cooling1"</span>,</span><br><span class="line">    sayName : sayNameforall</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2  = &#123;</span><br><span class="line">	name : <span class="string">"cooling2"</span>,</span><br><span class="line">    sayName : sayNameforall</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line">person1.sayName();<span class="comment">//cooling1</span></span><br><span class="line">person2.sayName();.<span class="comment">//cooling2</span></span><br><span class="line">sayNameforall();<span class="comment">//cooling</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>7.改变This</strong><br>①call()方法：<br>第一个参数指定了执行时this的值，其后的所有参数都是需要被传入函数的参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayNameForAll</span>(<span class="params">lable</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(lable + <span class="string">":"</span> + <span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name : <span class="string">"cooling1"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">	name : <span class="string">"cooling2"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line">sayNameForAll.call(<span class="keyword">this</span>,<span class="string">"global"</span>);<span class="comment">//cooling</span></span><br><span class="line">sayNameForAll.call(person1,<span class="string">"person1"</span>);<span class="comment">//cooling1</span></span><br><span class="line">sayNameForAll.call(person2,<span class="string">"person2"</span>);<span class="comment">//cooling2</span></span><br></pre></td></tr></table></figure></p>
+<p>②apply()方法：<br>这里的第二个参数是数组，数组可以是多个，所以传入函数的不仅仅是lable的话，那么多个数组就会起到作用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayNameForAll</span>(<span class="params">lable</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(lable + <span class="string">":"</span> + <span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name : <span class="string">"cooling1"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">	name : <span class="string">"cooling2"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"cooling"</span>;</span><br><span class="line">sayNameForAll.apply(<span class="keyword">this</span>,[<span class="string">"global"</span>]);<span class="comment">//cooling</span></span><br><span class="line">sayNameForAll.apply(person1,[<span class="string">"person1"</span>]);<span class="comment">//cooling1</span></span><br><span class="line">sayNameForAll.apply(person2,[<span class="string">"person2"</span>]);<span class="comment">//cooling2</span></span><br></pre></td></tr></table></figure></p>
+<p>③bind()方法：</p>
+<p>注意:这种方式，必须将其赋给另一个变量，然后利用这个变量，才可以进行执行！<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayNameForAll</span>(<span class="params">lable</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(lable + <span class="string">":"</span> + <span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name : <span class="string">"cooling1"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">	name : <span class="string">"cooling2"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayNameForPerson1 = sayNameForAll.bind(person1);</span><br><span class="line">sayNameForPerson1(<span class="string">"person1"</span>);<span class="comment">//person1:cooling1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayNameForPerson2 = sayNameForAll.bind(person2,<span class="string">"person2"</span>);</span><br><span class="line">sayNameForPerson2();<span class="comment">//person2:cooling2</span></span><br><span class="line"></span><br><span class="line">person2.sayName = sayNameForPerson1;</span><br><span class="line">person2.sayName(<span class="string">"person2"</span>);<span class="comment">//person2:cooling1</span></span><br><span class="line"></span><br><span class="line">实际上，最后两行就相当于：</span><br><span class="line"><span class="keyword">var</span> sayNameForPerson1 = sayNameForAll.bind(person1);</span><br><span class="line">sayNameForPerson1(<span class="string">"person2"</span>);</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript面向对象精要/">#JavaScript面向对象精要</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

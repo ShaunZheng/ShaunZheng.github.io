@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="###JavaScript中的字符串拼接
+
+这是JavaScript DOM编程艺术中的一个例子，字符串拼接部分曾经迷惑了我很久，各大网站上也没发现很好的讲解，下面最终查资料得到的结论…
+
+首先看代码：1234567891011121314151617181920212223242526272829">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ShaunZheng"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    首页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    归档
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    关于
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/01/17/JavaScript中的字符串拼接/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>###JavaScript中的字符串拼接</p>
+<blockquote>
+<p>这是JavaScript DOM编程艺术中的一个例子，字符串拼接部分曾经迷惑了我很久，各大网站上也没发现很好的讲解，下面最终查资料得到的结论…</p>
+</blockquote>
+<p>首先看代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">	&lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;p id=<span class="string">"message"</span>&gt;these are the things you should konw&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">	&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">		// 设定message的原始位置</span></span><br><span class="line"><span class="string">		function positionMessage() &#123;</span></span><br><span class="line"><span class="string">			if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">			if (!document.getElementById('message')) return false;</span></span><br><span class="line"><span class="string">			var elem = document.getElementById('message');</span></span><br><span class="line"><span class="string">			elem.style.position = "</span>absolute<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.left = "</span><span class="number">50</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.top = "</span><span class="number">100</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			// movement = setTimeout("</span>moveMessage()<span class="string">",3000);</span></span><br><span class="line"><span class="string">			moveElement("</span>message<span class="string">",1000,1000,10);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		// 移动元素位置函数</span></span><br><span class="line"><span class="string">		// function moveMessage()&#123;</span></span><br><span class="line"><span class="string">		// 	if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">		// 	if (!document.getElementById('message')) return false;</span></span><br><span class="line"><span class="string">		// 	var elem = document.getElementById('message');</span></span><br><span class="line"><span class="string">		// 	var xpos = parseInt(elem.style.left);</span></span><br><span class="line"><span class="string">		// 	var ypos = parseInt(elem.style.top);</span></span><br><span class="line"><span class="string">		// 	if (xpos == 2000 &amp;&amp; ypos == 1000) &#123;</span></span><br><span class="line"><span class="string">		// 		return true;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (xpos &lt; 2000) &#123;</span></span><br><span class="line"><span class="string">		// 		xpos++;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (xpos &gt; 2000) &#123;</span></span><br><span class="line"><span class="string">		// 		xpos--;</span></span><br><span class="line"><span class="string">		// 	&#125;	</span></span><br><span class="line"><span class="string">		// 	if (ypos &lt; 1000) &#123;</span></span><br><span class="line"><span class="string">		// 		ypos++;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (ypos &gt;1000) &#123;</span></span><br><span class="line"><span class="string">		// 		ypos--;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	elem.style.left = xpos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">		// 	elem.style.top = ypos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">		// 	movement = setTimeout("</span>moveMessage()<span class="string">",10);</span></span><br><span class="line"><span class="string">		// &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		// 抽象</span></span><br><span class="line"><span class="string">		function moveElement(elementID,final_x,final_y,interval)&#123;</span></span><br><span class="line"><span class="string">			if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">			if (!document.getElementById(elementID)) return false;</span></span><br><span class="line"><span class="string">			var elem = document.getElementById(elementID);</span></span><br><span class="line"><span class="string">			var xpos = parseInt(elem.style.left);</span></span><br><span class="line"><span class="string">			var ypos = parseInt(elem.style.top);</span></span><br><span class="line"><span class="string">			if (xpos == final_x &amp;&amp; ypos == final_y) &#123;</span></span><br><span class="line"><span class="string">				return true;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (xpos &lt; final_x) &#123;</span></span><br><span class="line"><span class="string">				xpos++;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (xpos &gt; final_x) &#123;</span></span><br><span class="line"><span class="string">				xpos--;</span></span><br><span class="line"><span class="string">			&#125;	</span></span><br><span class="line"><span class="string">			if (ypos &lt; final_y) &#123;</span></span><br><span class="line"><span class="string">				ypos++;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (ypos &gt;final_y) &#123;</span></span><br><span class="line"><span class="string">				ypos--;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			elem.style.left = xpos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.top = ypos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			var repeat = "</span>moveElement(<span class="string">'"+elementID+"'</span>,<span class="string">"+final_x+"</span>,<span class="string">"+final_y+"</span>,<span class="string">"+interval+"</span>)<span class="string">";</span></span><br><span class="line"><span class="string">			movement = setTimeout(repeat,interval);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		// 加载函数的函数</span></span><br><span class="line"><span class="string">		function addLoadEvent(func)&#123;</span></span><br><span class="line"><span class="string">			var oldonload = window.onload;</span></span><br><span class="line"><span class="string">			if (typeof window.onload != 'function') &#123;</span></span><br><span class="line"><span class="string">				window.onload = func;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			else&#123;</span></span><br><span class="line"><span class="string">				window.onload = function()&#123;</span></span><br><span class="line"><span class="string">					oldonload();</span></span><br><span class="line"><span class="string">					func();</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		// 加载函数</span></span><br><span class="line"><span class="string">		addLoadEvent(positionMessage);</span></span><br><span class="line"><span class="string">	&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>解释：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"moveElement('"</span><span class="comment">// 【moveElement('】 被当成一个字符串</span></span><br><span class="line">+elementID+</span><br><span class="line"><span class="string">"',"</span><span class="comment">//  【',】被当成一个字符串</span></span><br><span class="line">+final_x+</span><br><span class="line"><span class="string">","</span></span><br><span class="line">+final_y+</span><br><span class="line"><span class="string">","</span></span><br><span class="line">+interval+</span><br><span class="line"><span class="string">")"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>最后拼接后产生的效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">moveElement(<span class="string">'elementID'</span>,final_x,final_y,interval);</span><br><span class="line">movement = setTimeout(repeat,interval);<span class="comment">//这时这里的repeat就是moveElement('elementID',final_x,final_y,interval),注意：这里的repeat是不用加引号的！elementID始终需要引号是因为，它是字符串，另外的三个是数值，所以不加引号！</span></span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a>. 主要用于学习交流，若有帮助，不胜荣幸！
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/tags/">tags</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/一个超级简单的sql注入演示/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/关于NodeJS中类似函数参数arguments的问题/">Untitled</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

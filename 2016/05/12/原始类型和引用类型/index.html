@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="原始类型和引用类型一.原始类型（基本数据类型）Ⅰ.说明：1.基本数据类型的变量直接保存原始值（而不是一个指向对象的指针）。2.鉴别原始数据类型的最佳方法是：typeof操作符。3.原始类型具有原始方法（除null和undefined外），如:1234567891011var name = &#39;Cooling&#39;;var lowercaseName = name.toLowerCase();//全部转换成小写字母var firstLetter = name.charAt(0);//获得第一个字母Cvar middleOfName = name.substring(2,5);//活动字母2-4var count = 10;var fixedCount = count.toFixed(2);//10.00var hexCount = count.toString(16);//avar flag = true;var stringFlag = flag.toString();//&#34;true&#34;(字符串形式)
+Ⅱ.undefined：也只有一个值：undefined。对尚未定义的变量，以及尚未声明的变量使用typeof，结果都是undefined。
+但是注意：">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="原始类型和引用类型"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>原始类型和引用类型 - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/12/原始类型和引用类型/">
+                原始类型和引用类型
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="原始类型和引用类型"><a href="#原始类型和引用类型" class="headerlink" title="原始类型和引用类型"></a>原始类型和引用类型</h1><h2 id="一-原始类型（基本数据类型）"><a href="#一-原始类型（基本数据类型）" class="headerlink" title="一.原始类型（基本数据类型）"></a>一.原始类型（基本数据类型）</h2><h5 id="Ⅰ-说明："><a href="#Ⅰ-说明：" class="headerlink" title="Ⅰ.说明："></a>Ⅰ.说明：</h5><p>1.基本数据类型的变量直接保存原始值（而不是一个指向对象的指针）。<br>2.鉴别原始数据类型的最佳方法是：typeof操作符。<br>3.原始类型具有原始方法（除null和undefined外），如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Cooling'</span>;</span><br><span class="line"><span class="keyword">var</span> lowercaseName = name.toLowerCase();<span class="comment">//全部转换成小写字母</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//获得第一个字母C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//活动字母2-4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString();<span class="comment">//"true"(字符串形式)</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Ⅱ-undefined："><a href="#Ⅱ-undefined：" class="headerlink" title="Ⅱ.undefined："></a>Ⅱ.undefined：</h3><p>也只有一个值：undefined。<br>对尚未定义的变量，以及尚未声明的变量使用typeof，结果都是undefined。</p>
+<p>但是注意：<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message;</span><br><span class="line">alert(message);<span class="comment">//undefinde</span></span><br><span class="line">alert(age);<span class="comment">//错误</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>对尚未声明的变量，只能进行一项操作，即typeof操作符检测其数据类型。（注意：虽然说对尚未声明的变量，还可以使用delete不会出现错误，但是这样做没有意义。同时，在严格模式下，这样做真的会导致错误。）</p>
+</blockquote>
+<h3 id="Ⅲ-null："><a href="#Ⅲ-null：" class="headerlink" title="Ⅲ.null："></a>Ⅲ.null：</h3><p>空类型，该原始类型只有一个值：null。<br>逻辑上null表示一个空对象的指针，使用typeof检测会返回object。<br>undefined的值实际上是派生自null的值的。</p>
+<p>如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="literal">null</span> == <span class="literal">undefined</span>);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>对于null和undefined直接的差异：无论在什么情况下，都没有必要把一个变量的值显示的设置为undefined；但是对于null只要意在保存对象的变量还没有真正保存对象，就应该明确的让该变量保存null值（也就是说：声明空对象的时候应该将其赋值为null）。</p>
+</blockquote>
+<h3 id="Ⅳ-string"><a href="#Ⅳ-string" class="headerlink" title="Ⅳ.string"></a>Ⅳ.string</h3><h5 id="1-特性："><a href="#1-特性：" class="headerlink" title="1.特性："></a>1.特性：</h5><p>①使用.length访问字符串的长度<br>②字符串一旦创建，他们的值就不能改变。要改变某个变量保存的字符串，首先要销毁原来的字符串，然后再用另一个包含新字符串填充该变量。如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lang = <span class="string">"Java"</span>;</span><br><span class="line">lang = lang + <span class="string">"Script"</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其先是创建了一个能够容纳10个字符的新字符串，然后在字符串中填充Java和Script，最后一步是销毁原来的Java和字符串Script。</p>
+</blockquote>
+<h5 id="2-类型转换："><a href="#2-类型转换：" class="headerlink" title="2.类型转换："></a>2.类型转换：</h5><p>①toString()<br>②String()<br>③eval()</p>
+<h3 id="Ⅴ-boolean"><a href="#Ⅴ-boolean" class="headerlink" title="Ⅴ.boolean"></a>Ⅴ.boolean</h3><h5 id="1-特性：-1"><a href="#1-特性：-1" class="headerlink" title="1.特性："></a>1.特性：</h5><p>①true不一定为1，false也不一定为0；<br>②使用Boolean()进行转换，值为true的有：任何非空字符、任何非0数值、任何非空对象。<br>③使用Boolean()进行转换，值为false的有：空字符串、0、NaN、null、undefined。</p>
+<h3 id="Ⅵ-number"><a href="#Ⅵ-number" class="headerlink" title="Ⅵ.number"></a>Ⅵ.number</h3><h5 id="1-NaN检测："><a href="#1-NaN检测：" class="headerlink" title="1.NaN检测："></a>1.NaN检测：</h5><p>通过isNaN()检测。</p>
+<h5 id="2-数值转换"><a href="#2-数值转换" class="headerlink" title="2.数值转换"></a>2.数值转换</h5><p>①Number()<br>②parseInt()<br>③parseFloat()</p>
+<p>##二.引用类型（object）</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript/">#JavaScript</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -10,6 +10,11 @@
 
     <!--Description-->
     
+        <meta name="description" content="JavaScript中的字符串拼接
+这是JavaScript DOM编程艺术中的一个例子，字符串拼接部分曾经迷惑了我很久，各大网站上也没发现很好的讲解，下面最终查资料得到的结论…
+
+首先看代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&#34;en&#34;&amp;gt;&amp;lt;head&amp;gt;	&amp;lt;meta charset=&#34;UTF-8&#34;&amp;gt;	&amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;	&amp;lt;p id=&#34;message&#34;&amp;gt;these are the things you should konw&amp;lt;/p&amp;gt;	&amp;lt;script type=&#34;text/javascript&#34;&amp;gt;		// 设定message的原始位置		function positionMessage() &amp;#123;			if (!document.getElementById) return false;			if (!document.getElementById(&#39;message&#39;)) return false;			var elem = document.getElementById(&#39;message&#39;);			elem.style.position = &#34;absolute&#34;;			elem.style.left = &#34;50px&#34;;			elem.style.top = &#34;100px&#34;;			// movement = setTimeout(&#34;moveMessage()&#34;,3000);			moveElement(&#34;message&#34;,1000,1000,10);		&amp;#125;				// 移动元素位置函数		// function moveMessage()&amp;#123;		// 	if (!document.getElementById) return false;		// 	if (!document.getElementById(&#39;message&#39;)) return false;		// 	var elem = document.getElementById(&#39;message&#39;);		// 	var xpos = parseInt(elem.style.left);		// 	var ypos = parseInt(elem.style.top);		// 	if (xpos == 2000 &amp;amp;&amp;amp; ypos == 1000) &amp;#123;		// 		return true;		// 	&amp;#125;		// 	if (xpos &amp;lt; 2000) &amp;#123;		// 		xpos++;		// 	&amp;#125;		// 	if (xpos &amp;gt; 2000) &amp;#123;		// 		xpos--;		// 	&amp;#125;			// 	if (ypos &amp;lt; 1000) &amp;#123;		// 		ypos++;		// 	&amp;#125;		// 	if (ypos &amp;gt;1000) &amp;#123;		// 		ypos--;		// 	&amp;#125;		// 	elem.style.left = xpos + &#34;px&#34;;		// 	elem.style.top = ypos + &#34;px&#34;;		// 	movement = setTimeout(&#34;moveMessage()&#34;,10);		// &amp;#125;		// 抽象		function moveElement(elementID,final_x,final_y,interval)&amp;#123;			if (!document.getElementById) return false;			if (!document.getElementById(elementID)) return false;			var elem = document.getElementById(elementID);			var xpos = parseInt(elem.style.left);			var ypos = parseInt(elem.style.top);			if (xpos == final_x &amp;amp;&amp;amp; ypos == final_y) &amp;#123;				return true;			&amp;#125;			if (xpos &amp;lt; final_x) &amp;#123;				xpos++;			&amp;#125;			if (xpos &amp;gt; final_x) &amp;#123;				xpos--;			&amp;#125;				if (ypos &amp;lt; final_y) &amp;#123;				ypos++;			&amp;#125;			if (ypos &amp;gt;final_y) &amp;#123;				ypos--;			&amp;#125;			elem.style.left = xpos + &#34;px&#34;;			elem.style.top = ypos + &#34;px&#34;;			var repeat = &#34;moveElement(&#39;&#34;+elementID+&#34;&#39;,&#34;+final_x+&#34;,&#34;+final_y+&#34;,&#34;+interval+&#34;)&#34;;			movement = setTimeout(repeat,interval);		&amp;#125;		// 加载函数的函数		function addLoadEvent(func)&amp;#123;			var oldonload = window.onload;			if (typeof window.onload != &#39;function&#39;) &amp;#123;				window.onload = func;			&amp;#125;			else&amp;#123;				window.onload = function()&amp;#123;					oldonload();					func();				&amp;#125;			&amp;#125;		&amp;#125;		// 加载函数		addLoadEvent(positionMessage);	&amp;lt;/script&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;">
+    
 
     <!--Author-->
     
@@ -18,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="ShaunZheng"/>
+        <meta property="og:title" content="JavaScript中的字符串拼接"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +34,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>ShaunZheng</title>
+    <title>JavaScript中的字符串拼接 - ShaunZheng</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -123,57 +128,14 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">ShaunZheng</h1>
-        
     </div>
 </header>
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/06/01/Git使用命令/">
-                Git常用命令
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-06-01</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h4 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h4><p> 1.git clone url//将url上的项目克隆到本地</p>
-<p> 2.git init //通过git init命令把这个目录变成Git可以管理的仓库</p>
-<p> 3.git status//检测当前的状态</p>
-<p> 4.git add 文件名//建立跟踪</p>
-<p> 5.git status//再次检测当前状态（可以使用git reset 文件名，使得刚刚执行的git add 文件名 撤销）</p>
-<p> 6.$ git commit -m “add distributed”//表示确认提交，提交的过程中，-m后面写提交说明，如果没-m，那么会vim自动打开，会让你输入提交的说明（和github中提交前填写的说明是一个意思）。</p>
-<p> 7.git diff //看具体修改了什么内容（具体代码修改的是哪部分）</p>
-<p><strong>帮助理解：</strong></p>
-<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/005CMnY7jw1f46tyulyblj30cq06iaa8.jpg"></p>
-<p>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
-<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。</p>
-<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
-        </div>
-        <a href="/2016/06/01/Git使用命令/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/2016/05/27/JavaScript中的字符串拼接/">
                 JavaScript中的字符串拼接
@@ -188,153 +150,39 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <h3 id="JavaScript中的字符串拼接"><a href="#JavaScript中的字符串拼接" class="headerlink" title="JavaScript中的字符串拼接"></a>JavaScript中的字符串拼接</h3><blockquote>
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="JavaScript中的字符串拼接"><a href="#JavaScript中的字符串拼接" class="headerlink" title="JavaScript中的字符串拼接"></a>JavaScript中的字符串拼接</h3><blockquote>
 <p>这是JavaScript DOM编程艺术中的一个例子，字符串拼接部分曾经迷惑了我很久，各大网站上也没发现很好的讲解，下面最终查资料得到的结论…</p>
 </blockquote>
 <p>首先看代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">	&lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;p id=<span class="string">"message"</span>&gt;these are the things you should konw&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">	&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">		// 设定message的原始位置</span></span><br><span class="line"><span class="string">		function positionMessage() &#123;</span></span><br><span class="line"><span class="string">			if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">			if (!document.getElementById('message')) return false;</span></span><br><span class="line"><span class="string">			var elem = document.getElementById('message');</span></span><br><span class="line"><span class="string">			elem.style.position = "</span>absolute<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.left = "</span><span class="number">50</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.top = "</span><span class="number">100</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			// movement = setTimeout("</span>moveMessage()<span class="string">",3000);</span></span><br><span class="line"><span class="string">			moveElement("</span>message<span class="string">",1000,1000,10);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		// 移动元素位置函数</span></span><br><span class="line"><span class="string">		// function moveMessage()&#123;</span></span><br><span class="line"><span class="string">		// 	if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">		// 	if (!document.getElementById('message')) return false;</span></span><br><span class="line"><span class="string">		// 	var elem = document.getElementById('message');</span></span><br><span class="line"><span class="string">		// 	var xpos = parseInt(elem.style.left);</span></span><br><span class="line"><span class="string">		// 	var ypos = parseInt(elem.style.top);</span></span><br><span class="line"><span class="string">		// 	if (xpos == 2000 &amp;&amp; ypos == 1000) &#123;</span></span><br><span class="line"><span class="string">		// 		return true;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (xpos &lt; 2000) &#123;</span></span><br><span class="line"><span class="string">		// 		xpos++;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (xpos &gt; 2000) &#123;</span></span><br><span class="line"><span class="string">		// 		xpos--;</span></span><br><span class="line"><span class="string">		// 	&#125;	</span></span><br><span class="line"><span class="string">		// 	if (ypos &lt; 1000) &#123;</span></span><br><span class="line"><span class="string">		// 		ypos++;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	if (ypos &gt;1000) &#123;</span></span><br><span class="line"><span class="string">		// 		ypos--;</span></span><br><span class="line"><span class="string">		// 	&#125;</span></span><br><span class="line"><span class="string">		// 	elem.style.left = xpos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">		// 	elem.style.top = ypos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">		// 	movement = setTimeout("</span>moveMessage()<span class="string">",10);</span></span><br><span class="line"><span class="string">		// &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		// 抽象</span></span><br><span class="line"><span class="string">		function moveElement(elementID,final_x,final_y,interval)&#123;</span></span><br><span class="line"><span class="string">			if (!document.getElementById) return false;</span></span><br><span class="line"><span class="string">			if (!document.getElementById(elementID)) return false;</span></span><br><span class="line"><span class="string">			var elem = document.getElementById(elementID);</span></span><br><span class="line"><span class="string">			var xpos = parseInt(elem.style.left);</span></span><br><span class="line"><span class="string">			var ypos = parseInt(elem.style.top);</span></span><br><span class="line"><span class="string">			if (xpos == final_x &amp;&amp; ypos == final_y) &#123;</span></span><br><span class="line"><span class="string">				return true;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (xpos &lt; final_x) &#123;</span></span><br><span class="line"><span class="string">				xpos++;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (xpos &gt; final_x) &#123;</span></span><br><span class="line"><span class="string">				xpos--;</span></span><br><span class="line"><span class="string">			&#125;	</span></span><br><span class="line"><span class="string">			if (ypos &lt; final_y) &#123;</span></span><br><span class="line"><span class="string">				ypos++;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if (ypos &gt;final_y) &#123;</span></span><br><span class="line"><span class="string">				ypos--;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			elem.style.left = xpos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			elem.style.top = ypos + "</span>px<span class="string">";</span></span><br><span class="line"><span class="string">			var repeat = "</span>moveElement(<span class="string">'"+elementID+"'</span>,<span class="string">"+final_x+"</span>,<span class="string">"+final_y+"</span>,<span class="string">"+interval+"</span>)<span class="string">";</span></span><br><span class="line"><span class="string">			movement = setTimeout(repeat,interval);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		// 加载函数的函数</span></span><br><span class="line"><span class="string">		function addLoadEvent(func)&#123;</span></span><br><span class="line"><span class="string">			var oldonload = window.onload;</span></span><br><span class="line"><span class="string">			if (typeof window.onload != 'function') &#123;</span></span><br><span class="line"><span class="string">				window.onload = func;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			else&#123;</span></span><br><span class="line"><span class="string">				window.onload = function()&#123;</span></span><br><span class="line"><span class="string">					oldonload();</span></span><br><span class="line"><span class="string">					func();</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		// 加载函数</span></span><br><span class="line"><span class="string">		addLoadEvent(positionMessage);</span></span><br><span class="line"><span class="string">	&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure></p>
-        </div>
-        <a href="/2016/05/27/JavaScript中的字符串拼接/" class="read-more">Read More</a>
-    
+<a id="more"></a>
+<p>解释：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"moveElement('"</span><span class="comment">// 【moveElement('】 被当成一个字符串</span></span><br><span class="line">+elementID+</span><br><span class="line"><span class="string">"',"</span><span class="comment">//  【',】被当成一个字符串</span></span><br><span class="line">+final_x+</span><br><span class="line"><span class="string">","</span></span><br><span class="line">+final_y+</span><br><span class="line"><span class="string">","</span></span><br><span class="line">+interval+</span><br><span class="line"><span class="string">")"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>最后拼接后产生的效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">moveElement(<span class="string">'elementID'</span>,final_x,final_y,interval);</span><br><span class="line">movement = setTimeout(repeat,interval);<span class="comment">//这时这里的repeat就是moveElement('elementID',final_x,final_y,interval),注意：这里的repeat是不用加引号的！elementID始终需要引号是因为，它是字符串，另外的三个是数值，所以不加引号！</span></span><br></pre></td></tr></table></figure></p>
 
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">
-                关于NodeJS中类似函数参数arguments的问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-16</span>
-            
-            
-            
-        </div>
     </div>
 
     
-        <div class="content">
-            <h3 id="关于NodeJS中类似函数参数arguments的问题"><a href="#关于NodeJS中类似函数参数arguments的问题" class="headerlink" title="关于NodeJS中类似函数参数arguments的问题"></a>关于NodeJS中类似函数参数arguments的问题</h3><p><strong>小文件拷贝中：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">src,dst</span>)</span>&#123;</span><br><span class="line">	fs.writeFileSync(dst, fs.readFileSync(src));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">argv</span>)</span>&#123;</span><br><span class="line">	copy(argv[<span class="number">0</span>],argv[<span class="number">1</span>]);,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main(process.argv.slice(<span class="number">2</span>));</span><br></pre></td></tr></table></figure></p>
-<p>困惑的是：main(argv)怎么就可以传入两个参数，并且调用的时候，可以使用==argv[0],argv[1]==？我们都知道：在js参数个数是可以传任意多个，不管命名的参数有多少个。但是在调用的时候必须使用==arguments[0],arguments[1]…==这种形式来调用参数。这里之所以可以直接使用argv，是因为使用==process.argv==获得命令行参数！</p>
 
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JavaScript/">#JavaScript</a>
         </div>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/15/一个超级简单的sql注入演示/">
-                一个超级简单的sql注入演示
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-15</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h5 id="（一）了解注入原理"><a href="#（一）了解注入原理" class="headerlink" title="（一）了解注入原理"></a>（一）了解注入原理</h5><p>为什么会存在sql注入呢，只能说SQL出身不好。因为sql作为一种解释型语言，在运行时是由一个运行时组件解释语言代码并执行其中包含的指令的语言。基于这种执行方式，产生了一系列叫做代码注入（code injection）的漏洞 。它的数据其实是由程序员编写的代码和用户提交的数据共同组成的。程序员在web开发时，没有过滤敏感字符，绑定变量，导致攻击者可以通过sql灵活多变的语法，构造精心巧妙的语句，不择手段，达成目的，或者通过系统报错，返回对自己有用的信息。<br>我们在学JDBC和SQL时，讲师跟我们说 Statement不能防止SQL注入, PreparedStatement能够防止SQL注入. 没错, 这句话是没有问题的, 但到底如何进行SQL注入?怎么直观的去了解SQL注入?这还是需要花一定的时间去实验的.预编译语句java.sql.PreparedStatement ,扩展自 Statement,不但具有 Statement 的所有能力而且具有更强大的功能。不同的是，PreparedStatement 是在创建语句对象的同时给出要执行的sql语句。这样，sql语句就会被系统进行预编译，执行的速度会有所增加，尤其是在执行大语句的时候，效果更加理想。而且PreparedStatement中绑定的sql语句是可以带参数的。</p>
-<h5 id="（二）架设注入环境"><a href="#（二）架设注入环境" class="headerlink" title="（二）架设注入环境"></a>（二）架设注入环境</h5><p>我们知道现在php作为一门网页编程语言真是风生水起，利用lamp(linux+apache+mysql+php)或者wamp(windows+apache+mysql+php)搭建网站环境，如腾讯的discuz、阿里的 phpwind 以及织梦的dedecms 等建站程序,占据了国内网站的半壁江山。那么我们今天即以这种架构为假象敌，首先是在本地架设wamp环境。需要用到的工具有：apache,mysql,php ，这几个组件可以单独下载安装，不过安装配置过程较为繁琐，还是建议新手直接从网上下载phpnow ，一个绿色程序，包含上述三个组件，傻瓜化操作就可以了。<br>然后呢，我们要建立测试用的数据表，编写html,php,文件，通过实例具体来演示通过SQL注入，登入后台管理员界面。这里，我之前已经写好了，大家看下：</p>
-<p>1.创建一张试验用的数据表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">users</span> (</span><br><span class="line">　　<span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">　　username <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">　　<span class="keyword">password</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">　　PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">　　<span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> username (username)</span><br><span class="line">　　);</span><br></pre></td></tr></table></figure></p>
-        </div>
-        <a href="/2016/05/15/一个超级简单的sql注入演示/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/15/addLoadEvent/">
-                深度理解函数：addLoadEvent(func)｛｝
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-15</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h4 id="深度理解函数：addLoadEvent-func-｛｝"><a href="#深度理解函数：addLoadEvent-func-｛｝" class="headerlink" title="深度理解函数：addLoadEvent(func)｛｝"></a>深度理解函数：addLoadEvent(func)｛｝</h4><h5 id="首先："><a href="#首先：" class="headerlink" title="首先："></a>首先：</h5><p>注释如下，应该可以理解。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">'function'</span>) &#123;<span class="comment">//判断当前如果没有函数加载</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = func;<span class="comment">//那么直接加载传入的函数</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//如果在调用addLoadEvent前，有window.onload加载的函数，那么加上该函数</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">			oldonload();</span><br><span class="line"></span><br><span class="line">			func();</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h5>
-        </div>
-        <a href="/2016/05/15/addLoadEvent/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/12/原始类型和引用类型/">
-                原始类型和引用类型
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-12</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="原始类型和引用类型"><a href="#原始类型和引用类型" class="headerlink" title="原始类型和引用类型"></a>原始类型和引用类型</h1><h2 id="一-原始类型（基本数据类型）"><a href="#一-原始类型（基本数据类型）" class="headerlink" title="一.原始类型（基本数据类型）"></a>一.原始类型（基本数据类型）</h2><h5 id="Ⅰ-说明："><a href="#Ⅰ-说明：" class="headerlink" title="Ⅰ.说明："></a>Ⅰ.说明：</h5><p>1.基本数据类型的变量直接保存原始值（而不是一个指向对象的指针）。<br>2.鉴别原始数据类型的最佳方法是：typeof操作符。<br>3.原始类型具有原始方法（除null和undefined外），如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Cooling'</span>;</span><br><span class="line"><span class="keyword">var</span> lowercaseName = name.toLowerCase();<span class="comment">//全部转换成小写字母</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//获得第一个字母C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//活动字母2-4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString();<span class="comment">//"true"(字符串形式)</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Ⅱ-undefined："><a href="#Ⅱ-undefined：" class="headerlink" title="Ⅱ.undefined："></a>Ⅱ.undefined：</h3><p>也只有一个值：undefined。<br>对尚未定义的变量，以及尚未声明的变量使用typeof，结果都是undefined。</p>
-<p>但是注意：<br>
-        </div>
-        <a href="/2016/05/12/原始类型和引用类型/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 
 
 </div>

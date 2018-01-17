@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="###利用Canvas和JavaScript实现五子棋
+
+主要技术：canvas绘制棋盘(UI)，JavaScript实现相关算法(AI)。在学习并实现五子棋功能的过程中，自己最初对算法不是特别了解，最后通过在纸上写写画画踩完了各处难点，终于完成了它的功能。感触颇多，故写篇文档分享。一来服务大众，二">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ShaunZheng"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    首页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    归档
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    标签
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    关于
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>###利用Canvas和JavaScript实现五子棋</p>
+<blockquote>
+<p>主要技术：canvas绘制棋盘(UI)，JavaScript实现相关算法(AI)。在学习并实现五子棋功能的过程中，自己最初对算法不是特别了解，最后通过在纸上写写画画踩完了各处难点，终于完成了它的功能。感触颇多，故写篇文档分享。一来服务大众，二来加深自己理解。</p>
+</blockquote>
+<p>####一、canvas绘制棋盘(UI)和实现落子</p>
+<p>#####1.绘制棋盘<br>这是在HTML中初始化canvas：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=<span class="string">"chess"</span> width=<span class="string">"450px"</span> height=<span class="string">"450px"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>其CSS样式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">		<span class="selector-tag">canvas</span>&#123;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="comment">/*只有块级元素才可以使用下面的居中属性*/</span></span><br><span class="line">			<span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">			<span class="attribute">box-shadow</span>: -<span class="number">2px</span> -<span class="number">2px</span> <span class="number">2px</span> <span class="number">#efefef</span>,<span class="number">5px</span> <span class="number">5px</span> <span class="number">5px</span> <span class="number">#b9b9b9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>①开始绘制棋盘：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chess = <span class="built_in">document</span>.getElementById(<span class="string">'chess'</span>);</span><br><span class="line"><span class="keyword">var</span> context = chess.getContext(<span class="string">'2d'</span>);<span class="comment">//这两句就不解释了。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> chessBoard = <span class="keyword">new</span> <span class="built_in">Array</span>();<span class="comment">//定义一个数组（这里是二维的），用于保存每个位置的落子情况。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">	chessBoard[i] = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">		chessBoard[i][j] = <span class="number">0</span>;<span class="comment">//初始化，将棋盘所有落子位置都设置成0。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里的canvas大小是450x450，棋盘按线划分规格是15+14*30+15，drawChessBoard()就完成了棋盘网格的绘制。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawChessBoard</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">		context.moveTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>);</span><br><span class="line">		context.lineTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">435</span>);</span><br><span class="line">		context.moveTo(<span class="number">15</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">		context.lineTo(<span class="number">435</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	context.lineWidth = <span class="number">2</span>;</span><br><span class="line">	context.strokeStyle = <span class="string">"#ACACAC"</span>;</span><br><span class="line">	context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>②开始绘制棋子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> me = <span class="string">"true"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">oneStep</span>(<span class="params">i,j,me</span>)</span>&#123;</span><br><span class="line">	context.beginPath();</span><br><span class="line">	context.arc(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>+ j * <span class="number">30</span>,<span class="number">13</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI);</span><br><span class="line">	context.closePath();</span><br><span class="line">	<span class="keyword">var</span> gradient = context.createRadialGradient(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>+ j * <span class="number">30</span>,<span class="number">0</span>,<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>+ j * <span class="number">30</span>,<span class="number">13</span>);<span class="comment">//这里设置的是由前一个圆到后一个圆的渐变</span></span><br><span class="line">	<span class="keyword">if</span> (me) &#123;</span><br><span class="line">		gradient.addColorStop(<span class="number">0</span>,<span class="string">'#636766'</span>);</span><br><span class="line">		gradient.addColorStop(<span class="number">1</span>,<span class="string">'#0a0a0a'</span>);<span class="comment">//该if语句表示如果是人操作，绘制成黑色，并且实现由半径为0的白色到半径为13的黑色的圆的渐变色。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		gradient.addColorStop(<span class="number">0</span>,<span class="string">'#F9F9F9'</span>);</span><br><span class="line">		gradient.addColorStop(<span class="number">1</span>,<span class="string">'#d1d1d1'</span>);<span class="comment">//此外表示计算机操作，颜色设置同上。</span></span><br><span class="line">	&#125;</span><br><span class="line">	context.fillStyle = gradient;</span><br><span class="line">	context.fill();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>③绘制棋盘上的背景图片：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> logo = <span class="keyword">new</span> Image();</span><br><span class="line">logo.src = <span class="string">"map.png"</span>;</span><br><span class="line">logo.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	context.drawImage(logo,<span class="number">50</span>,<span class="number">150</span>,<span class="number">353</span>,<span class="number">148</span>);<span class="comment">//50,150表示图片绘制的起始坐标</span></span><br><span class="line">	drawChessBoard();<span class="comment">//注意，绘制棋盘的函数要在添加背景图片之后调用，否则背景图片会遮盖住线条。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####2.实现落子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> over =<span class="literal">false</span>;</span><br><span class="line"><span class="comment">//点击棋盘，触发该函数</span></span><br><span class="line">chess.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="comment">//注意，这里的e在下文中表示的是onclick事件。</span></span><br><span class="line">	<span class="keyword">if</span> (over) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (!me) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// offsetX和offsetY这两个方法，是用于取得鼠标点击的位置</span></span><br><span class="line">	<span class="keyword">var</span> x = e.offsetX;</span><br><span class="line">	<span class="keyword">var</span> y = e.offsetY;</span><br><span class="line">	<span class="keyword">var</span> i = <span class="built_in">Math</span>.floor(x/<span class="number">30</span>);</span><br><span class="line">	<span class="keyword">var</span> j = <span class="built_in">Math</span>.floor(y/<span class="number">30</span>);</span><br><span class="line">	<span class="keyword">if</span> (chessBoard[i][j] == <span class="number">0</span>) &#123;<span class="comment">//如果落子点没有已经存在的棋子</span></span><br><span class="line">        oneStep(i,j,me);<span class="comment">//调用绘制棋子函数</span></span><br><span class="line">        chessBoard[i][j] = <span class="number">1</span>;<span class="comment">//绘制完成后，将该处的位置标记为了，这样以后别的棋子就不会对该点进行覆盖了。</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//下面的涉及到的是AI函数调用部分，可以先忽略，先看后面。</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">0</span>;k&lt;count;k++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (wins[i][j][k]) &#123;</span><br><span class="line">                myWin[k]++;</span><br><span class="line">                comWin[k] = <span class="number">6</span>;</span><br><span class="line">                <span class="keyword">if</span> (myWin[k] == <span class="number">5</span>) &#123;</span><br><span class="line">                    <span class="built_in">window</span>.alert(<span class="string">"你赢了！"</span>);</span><br><span class="line">                    over = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!over) &#123;</span><br><span class="line">            me = !me;<span class="comment">//将下棋权限交给计算机</span></span><br><span class="line">            comAI();<span class="comment">//调用下方的赢法统计，注意读到该部分，记得和这里结合来读</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>####二、JavaScript实现相关逻辑算法</p>
+<p>#####1.赢法数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wins = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">15</span>; i++)&#123;</span><br><span class="line">	wins[i] = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">		wins[i][j] = [];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="comment">//这里定义的是一个三维数组</span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;<span class="comment">//定义的是赢的第几种方法</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;<span class="comment">//i表遍历所有的行。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">11</span>; j++) &#123;<span class="comment">//j表示的是五个子连在一起时，首个子所在的行的位置。</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++) &#123;<span class="comment">//k用来控制是五个子连接到一块。</span></span><br><span class="line">			wins[i][j+k][count] = <span class="literal">true</span>;<span class="comment">//表示赢</span></span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;<span class="comment">//i表遍历所有的列。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">11</span>; j++) &#123;<span class="comment">//j表示的是五个子连在一起时，首个子所在的列的位置。</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++) &#123;<span class="comment">//k用来控制是五个子连接到一块。</span></span><br><span class="line">			wins[j+k][i][count] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">   <span class="comment">//下面的两个for循环，参数比较难以理解，下面是我帮助理解绘制的图。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">11</span>; j++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++) &#123;</span><br><span class="line">			wins[i+k][j+k][count] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">14</span>; j &gt; <span class="number">3</span>; j--) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++) &#123;</span><br><span class="line">			wins[i+k][j-k][count] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####2.赢法统计数组</p>
+<blockquote>
+<p>该部分注意结合上面的落子实现来读，在落子实现部分，onclick传入的i和j，就是这里未新定义的i和j。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myWin = [];</span><br><span class="line"><span class="keyword">var</span> comWin = [];<span class="comment">//这里定义的是落子的个数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">	myWin[i] = <span class="number">0</span>;<span class="comment">//人赢的第i种方法，对应的落子的个数。</span></span><br><span class="line">	comWin[i] = <span class="number">0</span>;<span class="comment">//电脑赢的第i种方法，对应的落子的个数。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//电脑的策略算法函数</span></span><br><span class="line">   <span class="comment">//这里是对每个落子点进行记分，人分越高越需要堵，电脑的分越高，越需要五子连珠。</span></span><br><span class="line"><span class="keyword">var</span> comAI = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myScore = [];<span class="comment">//人的子的总分，联系下文，你能了解它是二维数组。</span></span><br><span class="line">	<span class="keyword">var</span> max = <span class="number">0</span>;<span class="comment">//初始化分的最大值</span></span><br><span class="line">	<span class="keyword">var</span> u = <span class="number">0</span>, v = <span class="number">0</span>;<span class="comment">//初始化得分最大时，对应的落子坐标。</span></span><br><span class="line">	<span class="keyword">var</span> computerScore = [];<span class="comment">//电脑的总分</span></span><br><span class="line">       </span><br><span class="line">       <span class="comment">//下面这个for循环，主要是初始化每个落子点的初始分值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">		myScore[i] = [];</span><br><span class="line">		computerScore[i] = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">			myScore[i][j] = <span class="number">0</span>;</span><br><span class="line">			computerScore[i][j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span> (chessBoard[i][j] == <span class="number">0</span>) &#123;<span class="comment">//判断该落子点是否为空，即，没有被占用</span></span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; count; k++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (wins[i][j][k]) &#123;<span class="comment">//点击的坐标，对应的可以五子连珠的所有可能</span></span><br><span class="line">						<span class="keyword">if</span> (myWin[k] == <span class="number">1</span>) &#123;<span class="comment">//落子数为1，对应的分值</span></span><br><span class="line">						myScore[i][j] += <span class="number">200</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (myWin[k] == <span class="number">2</span>) &#123;落子数为<span class="number">2</span>，对应的分值</span><br><span class="line">							myScore[i][j] += <span class="number">400</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (myWin[k] == <span class="number">3</span>) &#123;落子数为<span class="number">3</span>，对应的分值</span><br><span class="line">							myScore[i][j] += <span class="number">2000</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (myWin[k] == <span class="number">4</span>) &#123;落子数为<span class="number">4</span>，对应的分值</span><br><span class="line">							myScore[i][j] += <span class="number">20000</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">if</span> (comWin[k] == <span class="number">1</span>) &#123;<span class="comment">//下面这些是对应的计算机的得分</span></span><br><span class="line">							computerScore[i][j] += <span class="number">220</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (comWin[k] == <span class="number">2</span>) &#123;</span><br><span class="line">							computerScore[i][j] += <span class="number">420</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (comWin[k] == <span class="number">3</span>) &#123;</span><br><span class="line">							computerScore[i][j] += <span class="number">2200</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (comWin[k] == <span class="number">4</span>) &#123;</span><br><span class="line">							computerScore[i][j] += <span class="number">20000</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">               <span class="comment">//注意，这里的max是myScore和computerScore共有的最大的值</span></span><br><span class="line">			<span class="keyword">if</span> (myScore[i][j] &gt; max) &#123;<span class="comment">//表示只要myScore大于最大值</span></span><br><span class="line">				max = myScore[i][j];</span><br><span class="line">				u = i;</span><br><span class="line">				v = j;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(myScore[i][j] == max)&#123;</span><br><span class="line">				<span class="keyword">if</span> (computerScore[i][j] &gt; computerScore[u][v]) &#123;</span><br><span class="line">					u = i;</span><br><span class="line">					v = j;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (computerScore[i][j] &gt; max) &#123;</span><br><span class="line">				max = computerScore[i][j];</span><br><span class="line">				u = i;</span><br><span class="line">				v = j;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(computerScore[i][j] == max)&#123;</span><br><span class="line">				<span class="keyword">if</span> (myScore[i][j] &gt; myScore[u][v]) &#123;</span><br><span class="line">					u = i;</span><br><span class="line">					v = j;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	oneStep(u,v,<span class="literal">false</span>);</span><br><span class="line">	chessBoard[u][v] = <span class="number">2</span>;<span class="comment">//这个数字只要不是0就行，主要为了占位</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">0</span>;k&lt;count;k++)&#123;</span><br><span class="line">		<span class="keyword">if</span> (wins[u][v][k]) &#123;</span><br><span class="line">			comWin[k]++;</span><br><span class="line">			myWin[k] = <span class="number">6</span>;<span class="comment">//随意的大于5 的数就行</span></span><br><span class="line">			<span class="keyword">if</span> (comWin[k] == <span class="number">5</span>) &#123;</span><br><span class="line">				<span class="built_in">window</span>.alert(<span class="string">"计算机赢了！"</span>);</span><br><span class="line">				over = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (!over) &#123;</span><br><span class="line">		me = !me;<span class="comment">//将下棋权限交给人</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a>. 主要用于学习交流，若有帮助，不胜荣幸！
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/tags/">tags</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/一个超级简单的sql注入演示/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/17/关于NodeJS中类似函数参数arguments的问题/">Untitled</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

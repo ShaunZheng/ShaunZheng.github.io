@@ -10,6 +10,12 @@
 
     <!--Description-->
     
+        <meta name="description" content="常用命令： 1.git clone url//将url上的项目克隆到本地
+ 2.git init //通过git init命令把这个目录变成Git可以管理的仓库
+ 3.git status//检测当前的状态
+ 4.git add 文件名//建立跟踪
+ 5.git status//再次检测当前状态（可">
+    
 
     <!--Author-->
     
@@ -40,7 +46,7 @@
 
     <!-- Title -->
     
-    <title>Archiv: 2018/1 - ShaunZheng</title>
+    <title>ShaunZheng</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -115,9 +121,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -125,160 +129,92 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">2018/1</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2018/01/17/Git使用命令/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/01/17/Git使用命令/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h4 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h4><p> 1.git clone url//将url上的项目克隆到本地</p>
+<p> 2.git init //通过git init命令把这个目录变成Git可以管理的仓库</p>
+<p> 3.git status//检测当前的状态</p>
+<p> 4.git add 文件名//建立跟踪</p>
+<p> 5.git status//再次检测当前状态（可以使用git reset 文件名，使得刚刚执行的git add 文件名 撤销）</p>
+<p> 6.$ git commit -m “add distributed”//表示确认提交，提交的过程中，-m后面写提交说明，如果没-m，那么会vim自动打开，会让你输入提交的说明（和github中提交前填写的说明是一个意思）。</p>
+<p> 7.git diff //看具体修改了什么内容（具体代码修改的是哪部分）</p>
+<p><strong>帮助理解：</strong></p>
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</p>
+<p><img src="http://www.liaoxuefeng.com/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0"><br>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。</p>
+<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
+<blockquote>
+<p>注意：上面只是本地做好版本提交，并没有放到如github的仓库中。</p>
+</blockquote>
+<p> 8.git push//将内容提交到github库</p>
+<h4 id="版本回退："><a href="#版本回退：" class="headerlink" title="版本回退："></a>版本回退：</h4><p>1.git log（–pretty=oneline）//查看修改的各个版本,如果加上括号里的，则会显示简略的信息</p>
+<p>2.==git reset –hard HEAD^==//如果回退最近的用==HEAD^==,次近的==HEAD^^==…以此类推。过多的时候(比如100个)可以用HEAD~100。</p>
+<p>3.git reset –hard numid //这里打numid可以通过之前的git log查看到，如果想在执行来上面的2后，撤销2,则需要用到这。当前bash窗口不能关，否则看不到numid了。</p>
+<blockquote>
+<p>当然，如果不小心关了当前的窗口，又想撤销2,那怎么办呢？可以使用git  reflog查看命令历史，以便确定要回到未来的哪个版本。</p>
+</blockquote>
+<h4 id="撤销修改："><a href="#撤销修改：" class="headerlink" title="撤销修改："></a>撤销修改：</h4><p>对于文件 myfile.txt</p>
+<ol>
+<li>修改后 未add（添加到暂存区） 需要撤销修改时：<pre><code>git checkout -- myfile.txt 或 手动删除工作区修改
+工作区 ： clean  暂存区： clean
+</code></pre></li>
+<li>修改后 add了（未commit） 再次修改文件  要撤销第二次修改时：<pre><code>git checkout -- myfile.txt (将暂存区恢复到工作区)
+暂存区有第一次的修改需要commit
+</code></pre></li>
+<li>修改后 add了（未commit），需要撤销修改时：<pre><code>git reset HEAD myfile.txt (将暂存区修改删除)
+此时工作区的修改还未撤销
+git checkout -- myfile.txt (撤销工作区修改)
+</code></pre></li>
+<li>修改后 add并commit了，需要撤销修改时：<pre><code>git reset --hard HEAD^  (版本回退)
+</code></pre></li>
+</ol>
+<h4 id="删除文件："><a href="#删除文件：" class="headerlink" title="删除文件："></a>删除文件：</h4><p>1.使用rm删除本地文件</p>
+<p>2.此时，如果你特么的后悔了，可以使用git checkout – myfile.txt</p>
+<p>3.如果你rm本地文件了，并且也git rm，那么，你完啦！直接就删除了。</p>
+<p>4.不过，你可以使用版本回退来，撤销，也就是使用git reset –hard numid这种方式来回退版本，达到撤销操作的目的。 </p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/JavaScript中的字符串拼接/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/04/27/JavaScript中创建对象的方法/">
-        <span class="archive-date">
-            Apr 2016
-        </span>
-        JavaScript中创建对象的方法
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/04/26/JavaScript的一些细节知识总结/">
-        <span class="archive-date">
-            Apr 2016
-        </span>
-        JavaScript的一些细节知识总结
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/04/28/JavaScript面向对象精要（一）/">
-        <span class="archive-date">
-            Apr 2016
-        </span>
-        JavaScript精要之原始类型和引用类型
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/05/10/JavaScript面向对象精要（三）/">
-        <span class="archive-date">
-            May 2016
-        </span>
-        JavaScript精要之对象
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/04/29/JavaScript面向对象精要（二）/">
-        <span class="archive-date">
-            Apr 2016
-        </span>
-        JavaScript精要之函数
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/addLoadEvent/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/tags/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        tags
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/一个超级简单的sql注入演示/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/关于NodeJS中类似函数参数arguments的问题/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/01/01/写给你们的我的梦/">
-        <span class="archive-date">
-            Jan 2016
-        </span>
-        写给你们的我的梦
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/利用Canvas和JavaScript实现五子棋/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/02/03/前端基础之HTML/">
-        <span class="archive-date">
-            Feb 2016
-        </span>
-        前端基础之HTML
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/01/17/原始类型和引用类型/">
-        <span class="archive-date">
-            Jan 2018
-        </span>
-        Untitled
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/09/12/喂，内个大三的！/">
-        <span class="archive-date">
-            Sep 2015
-        </span>
-        喂，内个大三的！
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 

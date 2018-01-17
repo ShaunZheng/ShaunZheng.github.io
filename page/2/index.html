@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ShaunZheng">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ShaunZheng"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="ShaunZheng"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>page - ShaunZheng</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Shaun
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="http://scooling.github.io/about/">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+            <h1 id="main-title" class="title">ShaunZheng</h1>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/10/利用Canvas和JavaScript实现五子棋/">
+                利用Canvas和JavaScript实现五子棋
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="利用Canvas和JavaScript实现五子棋"><a href="#利用Canvas和JavaScript实现五子棋" class="headerlink" title="利用Canvas和JavaScript实现五子棋"></a>利用Canvas和JavaScript实现五子棋</h3><blockquote>
+<p>主要技术：canvas绘制棋盘(UI)，JavaScript实现相关算法(AI)。在学习并实现五子棋功能的过程中，自己最初对算法不是特别了解，最后通过在纸上写写画画踩完了各处难点，终于完成了它的功能。感触颇多，故写篇文档分享。一来服务大众，二来加深自己理解。</p>
+</blockquote>
+<h4 id="一、canvas绘制棋盘-UI-和实现落子"><a href="#一、canvas绘制棋盘-UI-和实现落子" class="headerlink" title="一、canvas绘制棋盘(UI)和实现落子"></a>一、canvas绘制棋盘(UI)和实现落子</h4><h5 id="1-绘制棋盘"><a href="#1-绘制棋盘" class="headerlink" title="1.绘制棋盘"></a>1.绘制棋盘</h5><p>这是在HTML中初始化canvas：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=<span class="string">"chess"</span> width=<span class="string">"450px"</span> height=<span class="string">"450px"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>其CSS样式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">		<span class="selector-tag">canvas</span>&#123;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="comment">/*只有块级元素才可以使用下面的居中属性*/</span></span><br><span class="line">			<span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">			<span class="attribute">box-shadow</span>: -<span class="number">2px</span> -<span class="number">2px</span> <span class="number">2px</span> <span class="number">#efefef</span>,<span class="number">5px</span> <span class="number">5px</span> <span class="number">5px</span> <span class="number">#b9b9b9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>①开始绘制棋盘：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chess = <span class="built_in">document</span>.getElementById(<span class="string">'chess'</span>);</span><br><span class="line"><span class="keyword">var</span> context = chess.getContext(<span class="string">'2d'</span>);<span class="comment">//这两句就不解释了。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> chessBoard = <span class="keyword">new</span> <span class="built_in">Array</span>();<span class="comment">//定义一个数组（这里是二维的），用于保存每个位置的落子情况。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">	chessBoard[i] = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">		chessBoard[i][j] = <span class="number">0</span>;<span class="comment">//初始化，将棋盘所有落子位置都设置成0。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里的canvas大小是450x450，棋盘按线划分规格是15+14*30+15，drawChessBoard()就完成了棋盘网格的绘制。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawChessBoard</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">		context.moveTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>);</span><br><span class="line">		context.lineTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">435</span>);</span><br><span class="line">		context.moveTo(<span class="number">15</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">		context.lineTo(<span class="number">435</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	context.lineWidth = <span class="number">2</span>;</span><br><span class="line">	context.strokeStyle = <span class="string">"#ACACAC"</span>;</span><br><span class="line">	context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        </div>
+        <a href="/2016/05/10/利用Canvas和JavaScript实现五子棋/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/29/JavaScript面向对象精要（二）/">
+                JavaScript精要之函数
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>1.函数的本质</strong><br>JavaScript中，函数其实就是对象，使函数不同于其他对象的决定性特点就是函数存在一个[[call]]的内部属性。内部属性无法通过代码访问，而是定义了代码执行时的行为。（JavaScript的对象定义了多种内部属性，这种属性都用双重中括号括起来，比如[[Prototype]]）。正是有了这样的一个[[call]]属性，所以typeof在解读时，把函数解读为function。</p>
+<p><strong>2.函数的提升</strong><br>我们都知道，定义一个函数，既可以使用函数声明，也可以使用函数表达式，或者是使用构造函数方式。值得注意的是，函数声明会被提升至上下文！<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);<span class="comment">//10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>JavaScript会将函数声明提升至顶部来执行，使得它就如同下面这代码一样：</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure></p>
+<p>但是，值得注意的是，函数表达式，或者构造函数必须得在函数定义后调用函数，下面这就是错的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = add(<span class="number">5</span>,<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num1,num2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.函数就是值！</strong><br>eg1.函数可以将他们赋给变量：<br>
+        </div>
+        <a href="/2016/04/29/JavaScript面向对象精要（二）/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/28/JavaScript面向对象精要（一）/">
+                JavaScript精要之原始类型和引用类型
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-28</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>概念理解：</strong><br>原始值：原始类型变量中的值<br>引用值：就是对象，或者交做实例。</p>
+<blockquote>
+<p>原始值被直接保存在变量的对象内，引用值则作为一个指针保存在变量对象内，该指针指向实际对象在内存中的存储位置。</p>
+</blockquote>
+<p>创建对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure></p>
+<p>注意：因为引用类型不在变量中直接保存对象，所以，这里的object变量实际上并不包含对象的实例。这里的object是一个指向内存中实际对象所在位置的指针。这里的object的正确名称，应该叫被创建对象的引用！！！！</p>
+<p><strong>原始类型具有的原始方法（总结）：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"Cooling"</span>;</span><br><span class="line"><span class="keyword">var</span> lowercasename = name.toLowerCase();<span class="comment">//转化为小写</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//得到C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//得到2-4的字符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//转化为16进制a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString;<span class="comment">//转换为字符串"true"</span></span><br></pre></td></tr></table></figure></p>
+        </div>
+        <a href="/2016/04/28/JavaScript面向对象精要（一）/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/27/JavaScript中创建对象的方法/">
+                JavaScript中创建对象的方法
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-27</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>1.最简单的方法就是创建一个Object实例，然后为其添加属性和方法：（缺点：使用同一个接口创建很多对象，会产生大量的代码）</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">"cooling"</span>;</span><br><span class="line">person.age = <span class="number">20</span>;</span><br><span class="line">person.job = <span class="string">"Web Engineer"</span>;</span><br><span class="line">person.sayName() = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;<span class="comment">//注意这里有分号</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>2.对象字面量语法：（缺点：使用同一个接口创建很多对象，会产生大量的代码）</strong></p>
+<blockquote>
+<p>注意和上面的区别：用“，”号分隔，用的是“:”号赋值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name : <span class="string">"cooling"</span>,<span class="comment">//注意这里是逗号</span></span><br><span class="line">	age : <span class="number">20</span>,</span><br><span class="line">	job : <span class="string">"Web Engineer"</span>,</span><br><span class="line">	sayName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3.工厂模式：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age,job</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">	o.name = name;</span><br><span class="line">	o.age = age;</span><br><span class="line">	o.job = job;</span><br><span class="line">	o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">'cooling1'</span>,<span class="number">20</span>,<span class="string">'Web Engineer'</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = createPerson(<span class="string">'cooling2'</span>,<span class="number">23</span>,<span class="string">'Web Engineer'</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.构造函数模式：</strong></p>
+<blockquote>
+<p>注意：这里可是构造函数法的详细用法！像Object和Array这样的原生构造函数，在运行时，会自动出现在执行的环境中。此外也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。按照惯例，构造函数的首字母都应该大写，非构造函数用小写。</p>
+</blockquote>
+        </div>
+        <a href="/2016/04/27/JavaScript中创建对象的方法/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/26/JavaScript的一些细节知识总结/">
+                JavaScript的一些细节知识总结
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-26</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h4 id="一、函数的定义方式："><a href="#一、函数的定义方式：" class="headerlink" title="一、函数的定义方式："></a>一、函数的定义方式：</h4><h6 id="说法一：JavaScript提供两种函数的定义方式，一种是有返回值，一种是没有返回值（这种函数有时叫做子程或void函数）。"><a href="#说法一：JavaScript提供两种函数的定义方式，一种是有返回值，一种是没有返回值（这种函数有时叫做子程或void函数）。" class="headerlink" title="说法一：JavaScript提供两种函数的定义方式，一种是有返回值，一种是没有返回值（这种函数有时叫做子程或void函数）。"></a>说法一：JavaScript提供两种函数的定义方式，一种是有返回值，一种是没有返回值（这种函数有时叫做子程或void函数）。</h6><p><strong>1.有返回值的：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> product = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">		product *= num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> product;</span><br><span class="line">&#125;</span><br><span class="line">print(factorial(<span class="number">4</span>));<span class="comment">//24</span></span><br><span class="line">print(factorial(<span class="number">5</span>));<span class="comment">//120</span></span><br><span class="line">print(factorial(<span class="number">10</span>));<span class="comment">//3628800</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>2.无返回值的：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curve</span>(<span class="params">arr, amount</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		arr[i] += amount;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> grades = [<span class="number">80</span>,<span class="number">83</span>,<span class="number">74</span>,<span class="number">71</span>,<span class="number">90</span>];</span><br><span class="line">curve(grades,<span class="number">5</span>);</span><br><span class="line">print(grades);<span class="comment">//85,88.79,76,95</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="说法二：函数声明、函数表达式、Function-构造函数三种方法来定义。"><a href="#说法二：函数声明、函数表达式、Function-构造函数三种方法来定义。" class="headerlink" title="说法二：函数声明、函数表达式、Function()构造函数三种方法来定义。"></a>说法二：函数声明、函数表达式、Function()构造函数三种方法来定义。</h6><p><strong>1.函数声明：</strong></p>
+        </div>
+        <a href="/2016/04/26/JavaScript的一些细节知识总结/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/10/JavaScript面向对象精要（三）/">
+                JavaScript精要之对象
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>1.定义属性</strong></p>
+<p>当一个属性第一次被添加给对象的时候，JavaScript在对象上调用了一个名为[[Put]]的内部方法。[[Put]]方法会在对象上创建一个新的节点来保存属性。此处创建的是自有属性，而不是原型属性。当一个已有属性，被赋予一个新的值的时候，调用[[Set]]方法。<br><img src="http://ww3.sinaimg.cn/mw690/005CMnY7jw1f3qd3jrwzij30ix06eaat.jpg"></p>
+<p><strong>2.属性探测</strong></p>
+<p>探测属性常见的错误：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(person1.age)&#123;</span><br><span class="line">	<span class="keyword">do</span>...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题是：JavaScript的类型强制会影响其输出的结果。如果if判断的值是：一个对象、非空字符串、非0数字或者true时，判断为真；如果if判断的值是null、undefined、0、false、NaN或者空字符串的时候判断为假。</p>
+<p>通过探测属性使用in和hasOwnProperty().<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"name"</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"toString"</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3.删除属性</strong><br>
+        </div>
+        <a href="/2016/04/10/JavaScript面向对象精要（三）/" class="read-more">Read More</a>
+    
+
+</div>
+            
+        </section>
+    </div>
+</div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrap-pagination">
+                <a class="" href="/">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
+                <a class="" href="/page/3/">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    博客迁移自 <a href="https://scooling.github.io">郑爽</a> | 本人的知乎首页<a href="https://www.zhihu.com/people/zheng-shuang-36-4">知乎</a> | 交流学习WeChat: DINGJING. Never let yourself be a substitute for anyone!
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/27/JavaScript中的字符串拼接/">JavaScript中的字符串拼接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/15/一个超级简单的sql注入演示/">一个超级简单的sql注入演示</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/ShaunZheng">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:i@cooling.red">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    由Hexo强力驱动 | @shaun. All right reserved | Theme <a href="http://www.codeblocq.com/assets/projects/hexo-theme-alpha-dust/">AlphaDust</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
