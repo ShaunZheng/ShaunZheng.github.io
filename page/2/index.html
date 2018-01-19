@@ -139,6 +139,35 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/05/12/原始类型和引用类型/">
+                原始类型和引用类型
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="一-原始类型（基本数据类型）"><a href="#一-原始类型（基本数据类型）" class="headerlink" title="一.原始类型（基本数据类型）"></a>一.原始类型（基本数据类型）</h2><h5 id="Ⅰ-说明："><a href="#Ⅰ-说明：" class="headerlink" title="Ⅰ.说明："></a>Ⅰ.说明：</h5><p>1.基本数据类型的变量直接保存原始值（而不是一个指向对象的指针）。<br>2.鉴别原始数据类型的最佳方法是：typeof操作符。<br>3.原始类型具有原始方法（除null和undefined外），如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Cooling'</span>;</span><br><span class="line"><span class="keyword">var</span> lowercaseName = name.toLowerCase();<span class="comment">//全部转换成小写字母</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//获得第一个字母C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//活动字母2-4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString();<span class="comment">//"true"(字符串形式)</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Ⅱ-undefined："><a href="#Ⅱ-undefined：" class="headerlink" title="Ⅱ.undefined："></a>Ⅱ.undefined：</h3><p>也只有一个值：undefined。<br>对尚未定义的变量，以及尚未声明的变量使用typeof，结果都是undefined。</p>
+<p>但是注意：<br>
+        </div>
+        <a href="/2016/05/12/原始类型和引用类型/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/05/10/利用Canvas和JavaScript实现五子棋/">
                 利用Canvas和JavaScript实现五子棋
             </a>
@@ -157,7 +186,7 @@
             <blockquote>
 <p>主要技术：canvas绘制棋盘(UI)，JavaScript实现相关算法(AI)。在学习并实现五子棋功能的过程中，自己最初对算法不是特别了解，最后通过在纸上写写画画踩完了各处难点，终于完成了它的功能。感触颇多，故写篇文档分享。一来服务大众，二来加深自己理解。</p>
 </blockquote>
-<h4 id="一、canvas绘制棋盘-UI-和实现落子"><a href="#一、canvas绘制棋盘-UI-和实现落子" class="headerlink" title="一、canvas绘制棋盘(UI)和实现落子"></a>一、canvas绘制棋盘(UI)和实现落子</h4><h5 id="1-绘制棋盘"><a href="#1-绘制棋盘" class="headerlink" title="1.绘制棋盘"></a>1.绘制棋盘</h5><p>这是在HTML中初始化canvas：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=<span class="string">"chess"</span> width=<span class="string">"450px"</span> height=<span class="string">"450px"</span>&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="一、canvas绘制棋盘-UI-和实现落子"><a href="#一、canvas绘制棋盘-UI-和实现落子" class="headerlink" title="一、canvas绘制棋盘(UI)和实现落子"></a>一、canvas绘制棋盘(UI)和实现落子</h4><h5 id="1-绘制棋盘"><a href="#1-绘制棋盘" class="headerlink" title="1.绘制棋盘"></a>1.绘制棋盘</h5><p>这是在HTML中初始化canvas：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=<span class="string">"chess"</span> width=<span class="string">"450px"</span> height=<span class="string">"450px"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
 <p>其CSS样式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">		<span class="selector-tag">canvas</span>&#123;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="comment">/*只有块级元素才可以使用下面的居中属性*/</span></span><br><span class="line">			<span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">			<span class="attribute">box-shadow</span>: -<span class="number">2px</span> -<span class="number">2px</span> <span class="number">2px</span> <span class="number">#efefef</span>,<span class="number">5px</span> <span class="number">5px</span> <span class="number">5px</span> <span class="number">#b9b9b9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
 <p>①开始绘制棋盘：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chess = <span class="built_in">document</span>.getElementById(<span class="string">'chess'</span>);</span><br><span class="line"><span class="keyword">var</span> context = chess.getContext(<span class="string">'2d'</span>);<span class="comment">//这两句就不解释了。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> chessBoard = <span class="keyword">new</span> <span class="built_in">Array</span>();<span class="comment">//定义一个数组（这里是二维的），用于保存每个位置的落子情况。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">	chessBoard[i] = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">		chessBoard[i][j] = <span class="number">0</span>;<span class="comment">//初始化，将棋盘所有落子位置都设置成0。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里的canvas大小是450x450，棋盘按线划分规格是15+14*30+15，drawChessBoard()就完成了棋盘网格的绘制。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawChessBoard</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">		context.moveTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">15</span>);</span><br><span class="line">		context.lineTo(<span class="number">15</span>+ i * <span class="number">30</span>,<span class="number">435</span>);</span><br><span class="line">		context.moveTo(<span class="number">15</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">		context.lineTo(<span class="number">435</span>,<span class="number">15</span>+ i * <span class="number">30</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	context.lineWidth = <span class="number">2</span>;</span><br><span class="line">	context.strokeStyle = <span class="string">"#ACACAC"</span>;</span><br><span class="line">	context.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
         </div>
@@ -296,39 +325,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/04/10/JavaScript面向对象精要（三）/">
-                JavaScript精要之对象
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-04-10</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><strong>1.定义属性</strong></p>
-<p>当一个属性第一次被添加给对象的时候，JavaScript在对象上调用了一个名为[[Put]]的内部方法。[[Put]]方法会在对象上创建一个新的节点来保存属性。此处创建的是自有属性，而不是原型属性。当一个已有属性，被赋予一个新的值的时候，调用[[Set]]方法。<br><img src="http://ww3.sinaimg.cn/mw690/005CMnY7jw1f3qd3jrwzij30ix06eaat.jpg"></p>
-<p><strong>2.属性探测</strong></p>
-<p>探测属性常见的错误：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(person1.age)&#123;</span><br><span class="line">	<span class="keyword">do</span>...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>问题是：JavaScript的类型强制会影响其输出的结果。如果if判断的值是：一个对象、非空字符串、非0数字或者true时，判断为真；如果if判断的值是null、undefined、0、false、NaN或者空字符串的时候判断为假。</p>
-<p>通过探测属性使用in和hasOwnProperty().<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"name"</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"toString"</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>3.删除属性</strong><br>
-        </div>
-        <a href="/2016/04/10/JavaScript面向对象精要（三）/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -371,6 +367,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2018/01/20/ML实战2-1的Python知识点总结/">ML实战2-1的Python知识点总结</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
             </li>
             
@@ -380,10 +380,6 @@
             
             <li>
                 <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>

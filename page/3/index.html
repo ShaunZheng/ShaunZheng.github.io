@@ -139,6 +139,39 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/04/10/JavaScript面向对象精要（三）/">
+                JavaScript精要之对象
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>1.定义属性</strong></p>
+<p>当一个属性第一次被添加给对象的时候，JavaScript在对象上调用了一个名为[[Put]]的内部方法。[[Put]]方法会在对象上创建一个新的节点来保存属性。此处创建的是自有属性，而不是原型属性。当一个已有属性，被赋予一个新的值的时候，调用[[Set]]方法。<br><img src="http://ww3.sinaimg.cn/mw690/005CMnY7jw1f3qd3jrwzij30ix06eaat.jpg"></p>
+<p><strong>2.属性探测</strong></p>
+<p>探测属性常见的错误：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(person1.age)&#123;</span><br><span class="line">	<span class="keyword">do</span>...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题是：JavaScript的类型强制会影响其输出的结果。如果if判断的值是：一个对象、非空字符串、非0数字或者true时，判断为真；如果if判断的值是null、undefined、0、false、NaN或者空字符串的时候判断为假。</p>
+<p>通过探测属性使用in和hasOwnProperty().<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> person1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"name"</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 hasOwnProperty(<span class="string">"toString"</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3.删除属性</strong><br>
+        </div>
+        <a href="/2016/04/10/JavaScript面向对象精要（三）/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/03/前端基础之HTML/">
                 前端基础之HTML
             </a>
@@ -280,6 +313,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2018/01/20/ML实战2-1的Python知识点总结/">ML实战2-1的Python知识点总结</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
             </li>
             
@@ -289,10 +326,6 @@
             
             <li>
                 <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>
