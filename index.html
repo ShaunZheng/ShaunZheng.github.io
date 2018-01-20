@@ -139,6 +139,74 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2018/01/20/ML实战Python知识点总结（一）/">
+                ML实战Python知识点总结（一）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h4 id="一、数组和矩阵"><a href="#一、数组和矩阵" class="headerlink" title="一、数组和矩阵"></a>一、数组和矩阵</h4><blockquote>
+<p>注意，两者看似差不多，但是在对它们进行一系列<strong>操作</strong>时，效果会不太一样</p>
+</blockquote>
+<p>数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = array([[1,1],[1,2],[1,3],[1,4]])</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([[1, 1],</span><br><span class="line">       [1, 2],</span><br><span class="line">       [1, 3],</span><br><span class="line">       [1, 4]])</span><br></pre></td></tr></table></figure></p>
+<p>矩阵：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = mat(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">matrix([[1, 1],</span><br><span class="line">        [1, 2],</span><br><span class="line">        [1, 3],</span><br><span class="line">        [1, 4]])</span><br></pre></td></tr></table></figure>
+<h4 id="二、numpy–函数shape用法"><a href="#二、numpy–函数shape用法" class="headerlink" title="二、numpy–函数shape用法"></a>二、numpy–函数shape用法</h4><blockquote>
+<p>对数组和对矩阵的操作有一定的区别：</p>
+</blockquote>
+<p>相同点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([[1, 1],</span><br><span class="line">       [1, 2],</span><br><span class="line">       [1, 3],</span><br><span class="line">       [1, 4]])</span><br><span class="line">&gt;&gt;&gt; b = mat(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">matrix([[1, 1],</span><br><span class="line">        [1, 2],</span><br><span class="line">        [1, 3],</span><br><span class="line">        [1, 4]])</span><br><span class="line">&gt;&gt;&gt; a.shape</span><br><span class="line">(4, 2)</span><br><span class="line">&gt;&gt;&gt; b.shape</span><br><span class="line">(4, 2)</span><br></pre></td></tr></table></figure></p>
+<p>不同点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; c = array([1,2,3,4])</span><br><span class="line">&gt;&gt;&gt; c.shape</span><br><span class="line">(4,)</span><br><span class="line">&gt;&gt;&gt; d = mat(c)</span><br><span class="line">&gt;&gt;&gt; d.shape</span><br><span class="line">(1, 4)</span><br></pre></td></tr></table></figure></p>
+<p>shape[0]表示<del>数组</del>、矩阵的行数；shape[1]表示<del>数组</del>、矩阵的列数；这里通过c、d的操作可以发现，shape<strong>主要是针对矩阵</strong>的，操作数组时可能会出错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a.shape[0]</span><br><span class="line">4</span><br><span class="line">&gt;&gt;&gt; b.shape[1]</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; c.shape[0]</span><br><span class="line">4</span><br><span class="line">&gt;&gt;&gt; c.shape[1]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">IndexError: tuple index out of range</span><br><span class="line">&gt;&gt;&gt; d.shape[0]</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; d.shape[1]</span><br><span class="line">4</span><br></pre></td></tr></table></figure></p>
+<h4 id="三、numpy–函数tile用法"><a href="#三、numpy–函数tile用法" class="headerlink" title="三、numpy–函数tile用法"></a>三、numpy–函数tile用法</h4><p>其主要功能是对数组进行复制，tile(a,(row,column))，表示将数组a复制成一个row行，column列的数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b = tile(a,2)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([1, 2, 3, 1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; b = tile(a,(2,1))</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [1, 2, 3]])</span><br><span class="line">&gt;&gt;&gt; b = tile(a,(1,2))</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[1, 2, 3, 1, 2, 3]])</span><br><span class="line">&gt;&gt;&gt; b = tile(a,(2,2))</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[1, 2, 3, 1, 2, 3],</span><br><span class="line">       [1, 2, 3, 1, 2, 3]])</span><br></pre></td></tr></table></figure></p>
+<h4 id="四、numpy–函数sum用法"><a href="#四、numpy–函数sum用法" class="headerlink" title="四、numpy–函数sum用法"></a>四、numpy–函数sum用法</h4><p>注意，numpy里的sum和python自身的sum是不太一样的，这里主要介绍numpy里的sum：</p>
+<p><strong>axis=0表示列相加，axis=1表示行相加，没有则全部相加</strong></p>
+<p>使用方式1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from numpy import *</span><br><span class="line">&gt;&gt;&gt; sum([[0,1,2],[1,2,3]],axis=1)</span><br><span class="line">array([3, 6])</span><br><span class="line">&gt;&gt;&gt; sum([[0,1,2],[1,2,3]],axis=0)</span><br><span class="line">array([1, 3, 5])</span><br><span class="line">&gt;&gt;&gt; sum([[0,1,2],[1,2,3]])</span><br><span class="line">9</span><br></pre></td></tr></table></figure></p>
+<p>使用方式2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [1, 2, 3]])</span><br><span class="line">&gt;&gt;&gt; b.sum()</span><br><span class="line">12</span><br><span class="line">&gt;&gt;&gt; b.sum(axis=0)</span><br><span class="line">array([2, 4, 6])</span><br><span class="line">&gt;&gt;&gt; b.sum(axis=1)</span><br><span class="line">array([6, 6])</span><br></pre></td></tr></table></figure></p>
+<h4 id="五、numpy–函数argsort用法"><a href="#五、numpy–函数argsort用法" class="headerlink" title="五、numpy–函数argsort用法"></a>五、numpy–函数argsort用法</h4><blockquote>
+<p><strong>其返回的是数组值从小到大的索引值</strong></p>
+</blockquote>
+<p>Examples </p>
+<p>One dimensional array:<strong>一维数组</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x = np.array([3, 1, 2])</span><br><span class="line">&gt;&gt;&gt; np.argsort(x)</span><br><span class="line">array([1, 2, 0])</span><br></pre></td></tr></table></figure></p>
+<p>Two-dimensional array:<strong>二维数组</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x = np.array([[0, 3], [2, 2]])</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">array([[0, 3],</span><br><span class="line">       [2, 2]])</span><br><span class="line">&gt;&gt;&gt; np.argsort(x, axis=0) #按列排序</span><br><span class="line">array([[0, 1],</span><br><span class="line">       [1, 0]])</span><br><span class="line">&gt;&gt;&gt; np.argsort(x, axis=1) #按行排序</span><br><span class="line">array([[0, 1],</span><br><span class="line">       [0, 1]])</span><br></pre></td></tr></table></figure></p>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x = np.array([3, 1, 2])</span><br><span class="line">&gt;&gt;&gt; np.argsort(x) #按升序排列</span><br><span class="line">array([1, 2, 0])</span><br><span class="line">&gt;&gt;&gt; np.argsort(-x) #按降序排列</span><br><span class="line">array([0, 2, 1])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; x[np.argsort(x)] #通过索引值排序后的数组</span><br><span class="line">array([1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; x[np.argsort(-x)]</span><br><span class="line">array([3, 2, 1])</span><br></pre></td></tr></table></figure></p>
+<p>另一种方式实现按降序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = x[np.argsort(x)]</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; a[::-1]</span><br><span class="line">array([3, 2, 1])</span><br></pre></td></tr></table></figure></p>
+<h4 id="六、python字典的get函数和iteritems函数"><a href="#六、python字典的get函数和iteritems函数" class="headerlink" title="六、python字典的get函数和iteritems函数"></a>六、python字典的get函数和iteritems函数</h4><p><strong>1.get()：</strong></p>
+<p>get()方法语法：\<br>dict.get(key, default=None)\<br>key – 字典中要查找的键。\<br>default – 如果指定键的值不存在时，返回该默认值。</p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; dict.get(&apos;d&apos;,&apos;error&apos;)  </span><br><span class="line">&apos;error&apos;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.iteritems()：</strong></p>
+<p>python字典中还存在 <strong>items()</strong> 方法。两者有些许区别。\<br>items方法是可以将字典中的所有项，以列表方式返回。\<br>iteritems方法与items方法相比作用大致相同，只是它的返回值不是列表，而是一个迭代器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = &#123;&apos;1&apos;:&apos;one&apos;, &apos;2&apos;:&apos;two&apos;, &apos;3&apos;:&apos;three&apos;&#125;  </span><br><span class="line">&gt;&gt;&gt; x = d.items()  </span><br><span class="line">&gt;&gt;&gt; x  </span><br><span class="line">[(&apos;1&apos;, &apos;one&apos;), (&apos;3&apos;, &apos;three&apos;), (&apos;2&apos;, &apos;two&apos;)]  </span><br><span class="line">&gt;&gt;&gt; type(x)  </span><br><span class="line">&lt;type &apos;list&apos;&gt;  </span><br><span class="line">&gt;&gt;&gt; y = d.iteritems()  </span><br><span class="line">&gt;&gt;&gt; y  </span><br><span class="line">&lt;dictionary-itemiterator object at 0x025008A0&gt;  </span><br><span class="line">&gt;&gt;&gt; type(y)  </span><br><span class="line">&lt;type &apos;dictionary-itemiterator&apos;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="七、operator-itemgetter函数"><a href="#七、operator-itemgetter函数" class="headerlink" title="七、operator.itemgetter函数"></a>七、operator.itemgetter函数</h4><p>operator模块提供的itemgetter函数用于获取对象的<strong>哪些维</strong>的数据，参数为一些序号。</p>
+<blockquote>
+<p>要注意，operator.itemgetter函数获取的不是值，而是定义了一个函数，通过该函数作用到对象上才能获取值。</p>
+</blockquote>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import operator</span><br><span class="line">&gt;&gt;&gt; a = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b = operator.itemgetter(0,1)</span><br><span class="line">&gt;&gt;&gt; b(a)</span><br><span class="line">(1, 2)</span><br><span class="line">&gt;&gt;&gt; b = operator.itemgetter(2,0)</span><br><span class="line">&gt;&gt;&gt; b(a)</span><br><span class="line">(3, 1)</span><br><span class="line">&gt;&gt;&gt; b = operator.itemgetter(2,0,1)</span><br><span class="line">&gt;&gt;&gt; b(a)</span><br><span class="line">(3, 1, 2)</span><br></pre></td></tr></table></figure></p>
+<h4 id="八、sorted函数"><a href="#八、sorted函数" class="headerlink" title="八、sorted函数"></a>八、sorted函数</h4><p>sorted函数用来排序，<strong>sorted(iterable[, cmp[, key[, reverse]]])</strong></p>
+<blockquote>
+<p>参数：<br>      iterable可以是list或者iterator；<br>        cmp是带两个参数的比较函数，这个在python3里已经被弃用，可以不考虑。<br>        key 是带一个参数的函数；<br>        reverse为False或者True；</p>
+</blockquote>
+<p>其中key的参数为一个函数或者lambda函数。所以itemgetter可以用来当key的参数。</p>
+<p><br><br>根据第二个域和第三个域进行排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = [(&apos;john&apos;, &apos;A&apos;, 15), (&apos;jane&apos;, &apos;B&apos;, 12), (&apos;dave&apos;, &apos;B&apos;, 10)]</span><br><span class="line">&gt;&gt;&gt; sorted(a, key=operator.itemgetter(1,2))</span><br><span class="line">[(&apos;john&apos;, &apos;A&apos;, 15), (&apos;dave&apos;, &apos;B&apos;, 10), (&apos;jane&apos;, &apos;B&apos;, 12)]</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/06/01/Git使用命令/">
                 Git常用命令
             </a>
@@ -237,35 +305,6 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2016/05/15/addLoadEvent/">
-                深度理解函数：addLoadEvent(func)｛｝
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-15</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h5 id="首先："><a href="#首先：" class="headerlink" title="首先："></a>首先：</h5><p>注释如下，应该可以理解。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">'function'</span>) &#123;<span class="comment">//判断当前如果没有函数加载</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = func;<span class="comment">//那么直接加载传入的函数</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//如果在调用addLoadEvent前，有window.onload加载的函数，那么加上该函数</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">			oldonload();</span><br><span class="line"></span><br><span class="line">			func();</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h5>
-        </div>
-        <a href="/2016/05/15/addLoadEvent/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
             <a href="/2016/05/15/一个超级简单的sql注入演示/">
                 一个超级简单的sql注入演示
             </a>
@@ -295,13 +334,13 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2016/05/12/原始类型和引用类型/">
-                原始类型和引用类型
+            <a href="/2016/05/15/addLoadEvent/">
+                深度理解函数：addLoadEvent(func)｛｝
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-05-12</span>
+                <span class="date">2016-05-15</span>
             
             
             
@@ -310,11 +349,11 @@
 
     
         <div class="content">
-            <h2 id="一-原始类型（基本数据类型）"><a href="#一-原始类型（基本数据类型）" class="headerlink" title="一.原始类型（基本数据类型）"></a>一.原始类型（基本数据类型）</h2><h5 id="Ⅰ-说明："><a href="#Ⅰ-说明：" class="headerlink" title="Ⅰ.说明："></a>Ⅰ.说明：</h5><p>1.基本数据类型的变量直接保存原始值（而不是一个指向对象的指针）。<br>2.鉴别原始数据类型的最佳方法是：typeof操作符。<br>3.原始类型具有原始方法（除null和undefined外），如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Cooling'</span>;</span><br><span class="line"><span class="keyword">var</span> lowercaseName = name.toLowerCase();<span class="comment">//全部转换成小写字母</span></span><br><span class="line"><span class="keyword">var</span> firstLetter = name.charAt(<span class="number">0</span>);<span class="comment">//获得第一个字母C</span></span><br><span class="line"><span class="keyword">var</span> middleOfName = name.substring(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//活动字母2-4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> fixedCount = count.toFixed(<span class="number">2</span>);<span class="comment">//10.00</span></span><br><span class="line"><span class="keyword">var</span> hexCount = count.toString(<span class="number">16</span>);<span class="comment">//a</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> stringFlag = flag.toString();<span class="comment">//"true"(字符串形式)</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Ⅱ-undefined："><a href="#Ⅱ-undefined：" class="headerlink" title="Ⅱ.undefined："></a>Ⅱ.undefined：</h3><p>也只有一个值：undefined。<br>对尚未定义的变量，以及尚未声明的变量使用typeof，结果都是undefined。</p>
-<p>但是注意：<br>
+            <h5 id="首先："><a href="#首先：" class="headerlink" title="首先："></a>首先：</h5><p>注释如下，应该可以理解。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">'function'</span>) &#123;<span class="comment">//判断当前如果没有函数加载</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = func;<span class="comment">//那么直接加载传入的函数</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//如果在调用addLoadEvent前，有window.onload加载的函数，那么加上该函数</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">			oldonload();</span><br><span class="line"></span><br><span class="line">			func();</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h5>
         </div>
-        <a href="/2016/05/12/原始类型和引用类型/" class="read-more">Read More</a>
+        <a href="/2016/05/15/addLoadEvent/" class="read-more">Read More</a>
     
 
 </div>
@@ -361,6 +400,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2018/01/20/ML实战Python知识点总结（一）/">ML实战Python知识点总结（一）</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/06/01/Git使用命令/">Git常用命令</a>
             </li>
             
@@ -370,10 +413,6 @@
             
             <li>
                 <a class="footer-post" href="/2016/05/16/关于NodeJS中类似函数参数arguments的问题/">关于NodeJS中类似函数参数arguments的</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/05/15/addLoadEvent/">深度理解函数：addLoadEvent(func)</a>
             </li>
             
         </ul>
